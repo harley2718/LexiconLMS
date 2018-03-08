@@ -51,9 +51,12 @@ namespace LexiconLMS.Migrations
                 }
             }
 
-            var teacherUser = userManager.FindByName("thomas.teacher@lexiconlms.se");
-            userManager.AddToRole(teacherUser.Id, Role.Teacher);
+            ApplicationUser aUser;
+            aUser = userManager.FindByName("thomas.teacher@lexiconlms.se");
+            userManager.AddToRole(aUser.Id, Role.Teacher);
 
+            aUser = userManager.FindByName("hans.teacher@lexiconlms.se");
+            userManager.AddToRole(aUser.Id, Role.Student);
         }
     }
 }

@@ -79,7 +79,8 @@ namespace LexiconLMS.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    // return RedirectToLocal(returnUrl);
+                    return RedirectToLocal("/home/index");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
