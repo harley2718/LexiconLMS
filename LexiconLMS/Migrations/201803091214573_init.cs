@@ -3,7 +3,7 @@ namespace LexiconLMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init2 : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -33,7 +33,7 @@ namespace LexiconLMS.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 50),
                         Description = c.String(),
                         StartDate = c.DateTime(nullable: false),
                     })

@@ -13,13 +13,16 @@ namespace LexiconLMS.Models
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
-        [DisplayName("Namn")]
+        [DisplayName("Kursnamn")]
         public string Name { get; set; }
 
+        [DisplayName("Beskrivning")]
         public string Description { get; set; }
 
         [DisplayName("Startdatum")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
     }
 }
