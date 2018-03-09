@@ -17,6 +17,12 @@ namespace LexiconLMS.Controllers
         // GET: Courses
         public ActionResult Index()
         {
+
+            var list =
+            db.Courses.ToList()
+            .OrderByDescending(cl => cl.StartDate.ToString())
+            .Select( cl => new Course { Name = cl.Name, StartDate = cl.StartDate}
+            );
             return View(db.Courses.ToList());
         }
 

@@ -51,12 +51,13 @@ namespace LexiconLMS.Migrations
                 }
             }
 
-            ApplicationUser aUser;
-            aUser = userManager.FindByName("thomas.teacher@lexiconlms.se");
-            userManager.AddToRole(aUser.Id, Role.Teacher);
+            var teacherUser = userManager.FindByName("thomas.teacher@lexiconlms.se");
+            userManager.AddToRole(teacherUser.Id, Role.Teacher);
 
-            aUser = userManager.FindByName("hans.teacher@lexiconlms.se");
-            userManager.AddToRole(aUser.Id, Role.Student);
+            context.Courses.AddOrUpdate(
+               c => c.Name,
+               new Course { Name = "Kurs Ett", StartDate = DateTime.Now.AddDays(2), Description = "akflsjf jsf sdf öjsfalfj" },
+               new Course { Name = "Kurs Två", StartDate = DateTime.Now.AddDays(2), Description = "akflsjf jsf sdf öjsfalfj" });
         }
     }
 }
