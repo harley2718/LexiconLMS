@@ -36,7 +36,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Modules/Create
-        public ActionResult Create()
+        public ActionResult Create( int? courseId)
         {
             return View();
         }

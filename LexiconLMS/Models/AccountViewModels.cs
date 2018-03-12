@@ -58,7 +58,7 @@ namespace LexiconLMS.Models
         [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
-        [Display(Name = "Kom ihåg mig?")]
+        [Display(Name = "Kom ihåg mig")]
         public bool RememberMe { get; set; }
     }
 
