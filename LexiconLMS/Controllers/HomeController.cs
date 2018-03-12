@@ -23,7 +23,13 @@ namespace LexiconLMS.Controllers
                 return RedirectToAction("Index", "Student");    // Experimental target for early demonstration.
             }
 
-            return View(); // If you hit here, then you will probably stay in signed out state.
+            // We do not want to see any Home view.
+            //   return View(); // If you hit here, then you will probably stay in signed out state.
+            //
+            // When you hit here, you typically want to login, because otherwise you are not
+            // able to do anything anyway.
+            //
+            return RedirectToAction("Login", "Account");
         }
 
         public ActionResult About()
