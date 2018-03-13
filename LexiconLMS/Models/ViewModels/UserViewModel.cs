@@ -10,24 +10,25 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace LexiconLMS.Models.ViewModels
 {
 
-        public class UserViewModel : IdentityUser
+        public class UserViewModel 
     {
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(20, ErrorMessage = "Fältet år inte innehålla mer än 20 tecken.")]
         [DisplayName("Förnamn")]
-        public string uFName { get; set; }
+        public string UserFName { get; set; }
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(30, ErrorMessage = "Fältet år inte innehålla mer än 30 tecken.")]
         [DisplayName("Efternamn")]
-        public string uLName { get; set; }
+        public string UserLName { get; set; }
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
         [DisplayName("Användarnamn")]
-        public string uName { get; set; }
+        public string UserName { get; set; }
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
         [DisplayName("Email")]
-        public string uEmail { get; set; }
-        public string uPhoneNumber { get; set; }
+        public string UserEmail { get; set; }
+        [DisplayName("Email")]
+        public string UserPhoneNumber { get; set; }
     }
  }
