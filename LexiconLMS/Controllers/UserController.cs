@@ -15,7 +15,7 @@ namespace LexiconLMS.Controllers
 
        }
 
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             return View();
         }

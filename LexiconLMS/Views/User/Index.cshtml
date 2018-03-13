@@ -4,27 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Användare</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.uFName)
+            @Html.DisplayNameFor(model => model.UserFName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.uLName)
+            @Html.DisplayNameFor(model => model.UserLName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.uName)
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.uEmail)
+            @Html.DisplayNameFor(model => model.UserEmail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.uPhoneNumber)
+            @Html.DisplayNameFor(model => model.UserPhoneNumber)
         </th>
         <th></th>
     </tr>
@@ -32,19 +32,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.uFName)
+            @Html.DisplayFor(modelItem => item.UserFName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.uLName)
+            @Html.DisplayFor(modelItem => item.UserLName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.uName)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.uEmail)
+            @Html.DisplayFor(modelItem => item.UserEmail)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.uPhoneNumber)
+            @Html.DisplayFor(modelItem => item.UserPhoneNumber)
         </td>
   
         @*<td>

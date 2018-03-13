@@ -24,11 +24,15 @@ namespace LexiconLMS.Models.ViewModels
         [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
         [DisplayName("Användarnamn")]
         public string UserName { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Lösenord")]
+        public string Password { get; set; }
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
         [DisplayName("Email")]
         public string UserEmail { get; set; }
-        [DisplayName("Email")]
+        [DisplayName("Mobil")]
         public string UserPhoneNumber { get; set; }
     }
  }
