@@ -190,17 +190,26 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803131023596_per.cs" />
-    <Compile Include="Migrations\201803131023596_per.Designer.cs">
-      <DependentUpon>201803131023596_per.cs</DependentUpon>
+    <Compile Include="Migrations\201803121434094_Init.cs" />
+    <Compile Include="Migrations\201803121434094_Init.Designer.cs">
+      <DependentUpon>201803121434094_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121517159_courseid.cs" />
+    <Compile Include="Migrations\201803121517159_courseid.Designer.cs">
+      <DependentUpon>201803121517159_courseid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803131019188_userviewmodel.cs" />
+    <Compile Include="Migrations\201803131019188_userviewmodel.Designer.cs">
+      <DependentUpon>201803131019188_userviewmodel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -212,6 +221,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -238,6 +248,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -270,16 +285,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Modules\Create.cshtml" />
-    <Content Include="Views\Modules\Delete.cshtml" />
-    <Content Include="Views\Modules\Details.cshtml" />
-    <Content Include="Views\Modules\Edit.cshtml" />
-    <Content Include="Views\Modules\Index.cshtml" />
-    <Content Include="Views\Courses\Create.cshtml" />
-    <Content Include="Views\Courses\Delete.cshtml" />
-    <Content Include="Views\Courses\Details.cshtml" />
-    <Content Include="Views\Courses\Edit.cshtml" />
-    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Module\Create.cshtml" />
+    <Content Include="Views\Module\Delete.cshtml" />
+    <Content Include="Views\Module\Details.cshtml" />
+    <Content Include="Views\Module\Edit.cshtml" />
+    <Content Include="Views\Module\Index.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Delete.cshtml" />
+    <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\StudentViews\StudentWelcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -299,8 +314,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803131023596_per.resx">
-      <DependentUpon>201803131023596_per.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803121434094_Init.resx">
+      <DependentUpon>201803121434094_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121517159_courseid.resx">
+      <DependentUpon>201803121517159_courseid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803131019188_userviewmodel.resx">
+      <DependentUpon>201803131019188_userviewmodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

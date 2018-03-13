@@ -13,7 +13,7 @@ namespace LexiconLMS.Controllers
             if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
             {
                 // Teacher
-                return RedirectToAction("Index", "Courses");
+                return RedirectToAction("Index", "Course");
             }
             else if (User.IsInRole(LexiconLMS.Models.Role.Student))
             {
