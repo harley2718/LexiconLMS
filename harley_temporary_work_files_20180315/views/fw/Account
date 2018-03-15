@@ -1,0 +1,12 @@
+ConfirmEmail.cshtml
+ExternalLoginConfirmation.cshtml
+ExternalLoginFailure.cshtml
+_ExternalLoginsListPartial.cshtml
+ForgotPasswordConfirmation.cshtml
+ForgotPassword.cshtml
+Login.cshtml
+Register.cshtml
+ResetPasswordConfirmation.cshtml
+ResetPassword.cshtml
+SendCode.cshtml
+VerifyCode.cshtml

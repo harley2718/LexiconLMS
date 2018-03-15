@@ -1,0 +1,16 @@
+Course:1:Create.cshtml
+Course:2:Delete.cshtml
+Course:3:Details.cshtml
+Course:4:Edit.cshtml
+Course:5:Index.cshtml
+Module:1:Create.cshtml
+Module:2:Delete.cshtml
+Module:3:Details.cshtml
+Module:4:Edit.cshtml
+Module:5:Index.cshtml
+StudentViews:1:StudentWelcome.cshtml
+User:1:Create.cshtml
+User:2:Delete.cshtml
+User:3:Details.cshtml
+User:4:Edit.cshtml
+User:5:Index.cshtml

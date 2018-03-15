@@ -1,0 +1,167 @@
+﻿======
+CM_F210_G140 : AccountController.Login(string returnUrl)
+CM_F210_P141 : AccountController.Login(LoginViewModel model, string returnUrl)
+CM_F210_G150 : AccountController.Register()
+CM_F210_P151 : AccountController.Register(RegisterViewModel model)
+...
+        // GET: /Account/VerifyCode
+AccountController.
+        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
+...
+        // POST: /Account/VerifyCode
+AccountController.
+        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
+...
+        // GET: /Account/ConfirmEmail
+AccountController.
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+...
+        // GET: /Account/ForgotPassword
+AccountController.
+        public ActionResult ForgotPassword()
+...
+        // POST: /Account/ForgotPassword
+AccountController.
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+...
+        // GET: /Account/ForgotPasswordConfirmation
+AccountController.
+        public ActionResult ForgotPasswordConfirmation()
+...
+        // GET: /Account/ResetPassword
+AccountController.
+        public ActionResult ResetPassword(string code)
+...
+        // POST: /Account/ResetPassword
+AccountController.
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+...
+        // GET: /Account/ResetPasswordConfirmation
+AccountController.
+        public ActionResult ResetPasswordConfirmation()
+...
+        // POST: /Account/ExternalLogin
+AccountController.
+        public ActionResult ExternalLogin(string provider, string returnUrl)
+...
+        // GET: /Account/SendCode
+AccountController.
+        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
+...
+        // POST: /Account/SendCode
+AccountController.
+        public async Task<ActionResult> SendCode(SendCodeViewModel model)
+...
+        // GET: /Account/ExternalLoginCallback
+AccountController.
+        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+...
+        // POST: /Account/ExternalLoginConfirmation
+AccountController.
+        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
+...
+        // POST: /Account/LogOff
+AccountController.
+        public ActionResult LogOff()
+...
+        // GET: /Account/ExternalLoginFailure
+AccountController.
+        public ActionResult ExternalLoginFailure()
+...
+======
+CM_200_100   : HomeController.Index()
+CM_200_150   : HomeController.About()
+CM_200_160   : HomeController.Contact()
+======
+    public class ManageController : Controller
+...
+        // GET: /Manage/Index
+ManageController.
+        public async Task<ActionResult> Index(ManageMessageId? message)
+...
+        // POST: /Manage/RemoveLogin
+ManageController.
+        public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
+...
+        // GET: /Manage/AddPhoneNumber
+ManageController.
+        public ActionResult AddPhoneNumber()
+...
+        // POST: /Manage/AddPhoneNumber
+ManageController.
+        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+...
+        // POST: /Manage/EnableTwoFactorAuthentication
+ManageController.
+        public async Task<ActionResult> EnableTwoFactorAuthentication()
+...
+        // POST: /Manage/DisableTwoFactorAuthentication
+ManageController.
+        public async Task<ActionResult> DisableTwoFactorAuthentication()
+...
+        // GET: /Manage/VerifyPhoneNumber
+ManageController.
+        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
+...
+        // POST: /Manage/VerifyPhoneNumber
+ManageController.
+        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
+...
+        // POST: /Manage/RemovePhoneNumber
+ManageController.
+        public async Task<ActionResult> RemovePhoneNumber()
+...
+        // GET: /Manage/ChangePassword
+ManageController.
+        public ActionResult ChangePassword()
+...
+        // POST: /Manage/ChangePassword
+ManageController.
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+...
+        // GET: /Manage/SetPassword
+ManageController.
+        public ActionResult SetPassword()
+...
+        // POST: /Manage/SetPassword
+ManageController.
+        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
+...
+        // GET: /Manage/ManageLogins
+ManageController.
+        public async Task<ActionResult> ManageLogins(ManageMessageId? message)
+...
+        // POST: /Manage/LinkLogin
+ManageController.
+        public ActionResult LinkLogin(string provider)
+...
+        // GET: /Manage/LinkLoginCallback
+ManageController.
+        public async Task<ActionResult> LinkLoginCallback()
+...
+======
+CM_210_G100  : CourseController.Index
+CM_210_G110  : CourseController.Create()
+CM_210_P111  : CourseController.Create([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+CM_210_G120  : CourseController.Edit(int? id)
+CM_210_P121  : CourseController.Edit([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+CM_210_G130  : CourseController.Delete(int? id)
+CM_210_P131  : CourseController.DeleteConfirmed(int id)
+CM_210_G140  : CourseController.Details(int? id)
+======
+CM_220_G100  : ModuleController.Index()
+CM_220_G110  : ModuleController.Create( int? courseId)
+CM_220_P111  : ModuleController.Create([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Module module)
+CM_220_G120  : ModuleController.Edit(int? id)
+CM_220_P121  : ModuleController.Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Module module)
+CM_220_G130  : ModuleController.Delete(int? id)
+CM_220_P131  : ModuleController.DeleteConfirmed(int id)
+CM_220_G140  : ModuleController.Details(int? id)
+======
+CM_230_G100  : StudentController.Index()
+======
+CM_240_G100  : UserController.Index()
+CM_240_G110  : UserController.Create(int? id)
+CM_240_G111  : UserController.ActionResult Create()
+CM_240_P112  : UserController.Create([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+======

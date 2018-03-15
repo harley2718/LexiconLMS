@@ -1,0 +1,51 @@
+List of views
+=============
+
+V_F110_211_Account_CE      Account/ConfirmEmail.cshtml
+V_F110_221_Account_L_C     Account/ExternalLoginConfirmation.cshtml
+V_F110_222_Account_L_F     Account/ExternalLoginFailure.cshtml
+V_F110_223_Account_ELLP    Account/_ExternalLoginsListPartial.cshtml
+V_F110_231_Account_FP      Account/ForgotPassword.cshtml
+V_F110_232_Account_FP_C    Account/ForgotPasswordConfirmation.cshtml
+V_F110_240_Account_L       Account/Login.cshtml
+V_F110_250_Account_R       Account/Register.cshtml
+V_F110_260_Account_RP      Account/ResetPassword.cshtml
+V_F110_270_Account_RP_C    Account/ResetPasswordConfirmation.cshtml
+V_F110_280_Account_SC      Account/SendCode.cshtml
+V_F110_290_Account_VC      Account/VerifyCode.cshtml
+
+V_F120_100_Manage_IX       Manage/Index.cshtml
+V_F120_210_Manage_APN      Manage/AddPhoneNumber.cshtml
+V_F120_220_Manage_CP       Manage/ChangePassword.cshtml
+V_F120_230_Manage_L        Manage/ManageLogins.cshtml
+V_F120_240_Manage_SP       Manage/SetPassword.cshtml
+V_F120_250_Manage_VPN      Manage/VerifyPhoneNumber.cshtml
+
+V_SF130_110_Shared_ERR     Shared/Error.cshtml
+V_SF130_120_Shared_LAYOUT  Shared/_Layout.cshtml
+V_SF130_130_Shared_LOCKOUT Shared/Lockout.cshtml
+V_SF130_140_Shared_LP      Shared/_LoginPartial.cshtml
+
+V_F200_100_Home_IX         Home/Index.cshtml
+
+V_210_100_Course_IX        Course/Index.cshtml
+V_210_110_Course_CRE       Course/Create.cshtml
+V_210_120_Course_U         Course/Edit.cshtml
+V_210_130_Course_DEL       Course/Delete.cshtml
+V_210_140_Course_DETAILS   Course/Details.cshtml
+
+V_220_100_Module_IX        Module/Index.cshtml
+V_220_110_Module_CRE       Module/Create.cshtml
+V_220_120_Module_U         Module/Edit.cshtml
+V_220_130_Module_DEL       Module/Delete.cshtml
+V_220_140_Module_DETAILS   Module/Details.cshtml
+
+V_230_110_Student_W        StudentViews/StudentWelcome.cshtml
+
+V_240_100_User_IX          User/Index.cshtml
+V_240_110_User_CRE         User/Create.cshtml
+V_240_120_User_U           User/Edit.cshtml
+V_240_130_User_DEL         User/Delete.cshtml
+V_240_140_User_DETAILS     User/Details.cshtml
+
+
