@@ -20,12 +20,14 @@
                 @Html.ActionLink("Lexicon LMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                   <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
-                   <li>@Html.ActionLink("Moduler", "Index", "Module")</li>
-                   @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                </ul>
-                @Html.Partial("_LoginPartial")
+                @if (Request.IsAuthenticated)
+                 {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
+                        <li>@Html.ActionLink("Moduler", "Index", "Module")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                 }
             </div>
         </div>
     </div>

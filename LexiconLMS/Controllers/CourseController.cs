@@ -15,8 +15,14 @@ namespace LexiconLMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index( int? id)
         {
+            if (id != null){
+                ViewBag.CurrentCourse = id;
+            }
+            else { 
+                ViewBag.CurrentCourse = 0;
+            }
 
             var list =
             db.Courses.ToList()
@@ -58,7 +64,7 @@ namespace LexiconLMS.Controllers
             {
                 db.Courses.Add(course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Course", new { id = course.Id });
             }
 
             return View(course);

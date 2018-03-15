@@ -22,17 +22,17 @@ namespace LexiconLMS.Models.ViewModels
 #endif
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [StringLength(20, ErrorMessage = "Fältet år inte innehålla mer än 20 tecken.")]
+        [StringLength(20, ErrorMessage = "Fältet får inte innehålla mer än 20 tecken.")]
         [DisplayName("Förnamn")]
         public string UserFName { get; set; }
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [StringLength(30, ErrorMessage = "Fältet år inte innehålla mer än 30 tecken.")]
+        [StringLength(30, ErrorMessage = "Fältet får inte innehålla mer än 30 tecken.")]
         [DisplayName("Efternamn")]
         public string UserLName { get; set; }
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
+        [StringLength(50, ErrorMessage = "Fältet får inte innehålla mer än 50 tecken.")]
         [DisplayName("Användarnamn")]
         public string UserName { get; set; }
 
@@ -42,7 +42,7 @@ namespace LexiconLMS.Models.ViewModels
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
+        [StringLength(50, ErrorMessage = "Fältet får inte innehålla mer än 50 tecken.")]
         [DisplayName("Email")]
         public string UserEmail { get; set; }
 

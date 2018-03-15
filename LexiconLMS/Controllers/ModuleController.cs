@@ -38,7 +38,9 @@ namespace LexiconLMS.Controllers
         // GET: Modules/Create
         public ActionResult Create( int? courseId)
         {
-            return View();
+            var module = new Module();
+            module.CourseId = courseId.Value;
+            return View(module);
         }
 
         // POST: Modules/Create
@@ -46,13 +48,13 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Module module)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {
                 db.Modules.Add(module);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Course", new { id = module.CourseId });
             }
 
             return View(module);
@@ -84,7 +86,7 @@ namespace LexiconLMS.Controllers
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Course", new { id = module.Id });
             }
             return View(module);
         }
