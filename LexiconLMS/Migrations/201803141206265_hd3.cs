@@ -3,7 +3,7 @@ namespace LexiconLMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class per : DbMigration
+    public partial class hd3 : DbMigration
     {
         public override void Up()
         {
@@ -44,10 +44,11 @@ namespace LexiconLMS.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
+                        Name = c.String(nullable: false, maxLength: 50),
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
+                        Description = c.String(),
+                        CourseId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

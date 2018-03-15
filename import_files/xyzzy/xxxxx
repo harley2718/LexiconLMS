@@ -1,0 +1,37 @@
+
+08290cebaaab88b49a15e81351577fd9  LexiconLMS/Models/ViewModels/UserViewModel.cs
+a3158d47af11a70a74beeef4415fe1c5  LexiconLMS/Models/ViewModels/UserViewModel.cs
+
+0f1af56232a8ae506bb46754a0dcb3e3  LexiconLMS/Models/Module.cs
+8c980f000225a02d4ed98519c61230f4  LexiconLMS/Models/Module.cs
+
+08515534978e6772fd2354050ef7cacd  LexiconLMS/Views/Account/Login.cshtml
+c27e60f3ad00bacd934100c97f233e30  LexiconLMS/Views/Account/Login.cshtml
+
+1162ed185ea154c2eea0fcbcd851f3cf  LexiconLMS/Views/Course/Index.cshtml
+438ab69ec225cd51bc31259bb378b4c5  LexiconLMS/Views/Course/Index.cshtml
+
+1b5c4bbffed3e422358870316dcb6e0f  LexiconLMS/Views/StudentViews/StudentWelcome.cshtml
+9d639c7ac61f249df32b4fd31c776668  LexiconLMS/Views/StudentViews/StudentWelcome.cshtml
+
+6b6f8768c151d5722995910f47dc8e00  LexiconLMS/Views/Shared/_Layout.cshtml
+ba3f07cda2aa1810b093f2c99ab641ff  LexiconLMS/Views/Shared/_Layout.cshtml
+
+88757440b1075b4cefac15d0dff0ca7c  LexiconLMS/Views/Module/Create.cshtml
+9361327f1b72438de9ee5febfb081bd5  LexiconLMS/Views/Module/Create.cshtml
+
+90805ceed4c0b143332e65045149870d  LexiconLMS/Views/User/Create.cshtml
+bc543dee4a759e40d98fac97844c20d2  LexiconLMS/Views/User/Create.cshtml
+
+13cd7aca666f79f1ed85cb0f5261caa1  LexiconLMS/Controllers/UserController.cs
+848be3362fefd4ea4a8b30c4fd617e6c  LexiconLMS/Controllers/UserController.cs
+
+22db770835391c034f362f9ee4a1dd96  LexiconLMS/Controllers/AccountController.cs
+ca6fdc59f06f78c2f068c5407224b4e5  LexiconLMS/Controllers/AccountController.cs
+
+49b8025dd1a976ba72a938a3a1a594b0  LexiconLMS/Controllers/ModuleController.cs
+85b6aa62f92b06fb319e43fa75b20e76  LexiconLMS/Controllers/ModuleController.cs
+
+7446ac35f29b883a8dcb3a78e4351472  LexiconLMS/Controllers/CourseController.cs
+fb8730fd5a4e82af2df073f070fa27e9  LexiconLMS/Controllers/CourseController.cs
+
