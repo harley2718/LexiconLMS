@@ -10,120 +10,107 @@ using LexiconLMS.Models;
 
 namespace LexiconLMS.Controllers
 {
-    public class CourseController : Controller
+    public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Courses
-        // CM_210_G100
-        public ActionResult Index( int? id)
+        // GET: Activities
+        public ActionResult Index()
         {
-            if (id != null){
-                ViewBag.CurrentCourse = id;
-            }
-            else { 
-                ViewBag.CurrentCourse = 0;
-            }
-
-            var list =
-            db.Courses.ToList()
-            .OrderByDescending(cl => cl.StartDate.ToString())
-            .Select( cl => new Course { Name = cl.Name, StartDate = cl.StartDate}
-            );
-            return View(db.Courses.ToList());
+            return View(db.Activity.ToList());
         }
 
-        // GET: Courses/Details/5
+        // GET: Activities/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Activity activity = db.Activity.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(activity);
         }
 
-        // GET: Courses/Create
+        // GET: Activities/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Courses/Create
+        // POST: Activities/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+        public ActionResult Create([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Activity.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Course", new { id = course.Id });
+                return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(activity);
         }
 
-        // GET: Courses/Edit/5
+        // GET: Activities/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Activity activity = db.Activity.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(activity);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Activities/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(activity);
         }
 
-        // GET: Courses/Delete/5
+        // GET: Activities/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Activity activity = db.Activity.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(activity);
         }
 
-        // POST: Courses/Delete/5
+        // POST: Activities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Activity activity = db.Activity.Find(id);
+            db.Activity.Remove(activity);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

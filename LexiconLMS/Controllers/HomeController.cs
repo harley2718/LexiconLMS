@@ -8,6 +8,7 @@ namespace LexiconLMS.Controllers
 {
     public class HomeController : Controller
     {
+        // CM_200_G100
         public ActionResult Index()
         {
             if (User.IsInRole(LexiconLMS.Models.Role.Teacher))

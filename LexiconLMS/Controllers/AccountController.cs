@@ -53,6 +53,7 @@ namespace LexiconLMS.Controllers
         }
 
         //
+        // CM_F210_G140
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -62,6 +63,7 @@ namespace LexiconLMS.Controllers
         }
 
         //
+        // CM_F210_P141
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
