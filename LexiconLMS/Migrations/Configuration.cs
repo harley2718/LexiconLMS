@@ -118,6 +118,7 @@ namespace LexiconLMS.Migrations
             //_addStudent(context, userManager, "Hans.Ågren@lexiconlms.se" , "GIT kurs");            
             //_addStudent(context, userManager, "Lars.Björk@lexiconlms.se", "Java programmering - Grundkurs ");
 
+
 #if false
             foreach (var email in emails)
             {

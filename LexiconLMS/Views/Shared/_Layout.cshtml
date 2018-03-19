@@ -6,7 +6,12 @@
     <title>@ViewBag.Title - Lexicon LMS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/bootstrap-table-sv-SE.js"></script>*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,10 +27,10 @@
             <div class="navbar-collapse collapse">
                 @if (Request.IsAuthenticated)
                  {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
-                        <li>@Html.ActionLink("Moduler", "Index", "Module")</li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
+                    <li>@Html.ActionLink("Lärare", "Index", "User")</li>
+                </ul>
                     @Html.Partial("_LoginPartial")
                  }
             </div>

@@ -15,8 +15,21 @@ namespace LexiconLMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Modules
-        public ActionResult Index()
+        public ActionResult Index(int? courseId, int? moduleId)
         {
+            ViewBag.courseId = courseId;
+            if (moduleId.HasValue)
+            {
+                ViewBag.moduleId = moduleId.Value;
+            }
+
+            if (courseId.HasValue)
+            {
+                List<Module> modules =
+                db.Modules.Where(m => m.CourseId == courseId).ToList();
+              
+                return View(modules);
+            }
             return View(db.Modules.ToList());
         }
 
@@ -36,11 +49,10 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Modules/Create
-        public ActionResult Create( int? courseId)
+        public ActionResult Create(int? courseId)
         {
-            var module = new Module();
-            module.CourseId = courseId.Value;
-            return View(module);
+            ViewBag.courseId = courseId.Value;
+            return View();
         }
 
         // POST: Modules/Create
@@ -50,11 +62,12 @@ namespace LexiconLMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
+ 
             if (ModelState.IsValid)
             {
                 db.Modules.Add(module);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Course", new { id = module.CourseId });
+                return RedirectToAction("Index", "Module", new { courseId = module.CourseId, moduleId = module.Id });
             }
 
             return View(module);
@@ -72,6 +85,7 @@ namespace LexiconLMS.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.courseId = module.CourseId;
             return View(module);
         }
 
@@ -80,12 +94,14 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Module module)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
+            ViewBag.SuccessMsg = "";
             if (ModelState.IsValid)
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
+                //ViewBag.SuccessMsg = "Modulen har sparats";
                 return RedirectToAction("Index", "Course", new { id = module.Id });
             }
             return View(module);
@@ -112,9 +128,11 @@ namespace LexiconLMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Module module = db.Modules.Find(id);
+            var cId = module.CourseId;
             db.Modules.Remove(module);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Module", new { courseId = cId });
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
