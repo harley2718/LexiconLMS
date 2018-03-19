@@ -116,6 +116,7 @@ namespace LexiconLMS.Migrations
             _addStudent(context, userManager, "Oscar.Ek@lexiconlms.se", "C++ Basic Programming");
             _addStudent(context, userManager, "Maria.Eklund@lexiconlms.se", "C-programmering - Grundkurs");
 
+
 #if false
             foreach (var email in emails)
             {
