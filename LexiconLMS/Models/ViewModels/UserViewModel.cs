@@ -11,7 +11,7 @@ namespace LexiconLMS.Models.ViewModels
 {
     public class UserViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
 #if true
         public int     CourseId   { get; set; }  // Each students should be

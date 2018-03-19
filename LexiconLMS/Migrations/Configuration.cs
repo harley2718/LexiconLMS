@@ -42,10 +42,11 @@ namespace LexiconLMS.Migrations
         public static void _addStudent(ApplicationDbContext context,
                                        UserManager<ApplicationUser> userManager,
                                        string email,
-                                       string Course    = "kursen kurs",
-                                       string password  = "pppppp",
-                                       string firstName = "fn placeholder",
-                                       string surName   = "en placeholder")
+                                       string CourseName = "C#",
+                                       string password   = "pppppp",
+                                       string firstName  = "fn placeholder",
+                                       string surName    = "en placeholder",
+                                       int    courseId   = 1)
         {
             string userName = email;
 
@@ -54,7 +55,7 @@ namespace LexiconLMS.Migrations
                 return;
             }
 
-            var user = new ApplicationUser { UserName = email, Email = email };
+            var user = new ApplicationUser { UserName = email, Email = email, CourseId = courseId };
             var result = userManager.Create(user, password);
             if (!result.Succeeded)
             {
@@ -87,7 +88,7 @@ namespace LexiconLMS.Migrations
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
-//            var emails = new[] { "thomas.teacher@lexiconlms.se", "hans.teacher@lexiconlms.se" };
+            //            var emails = new[] { "thomas.teacher@lexiconlms.se", "hans.teacher@lexiconlms.se" };
 
             _addTeacher(context, userManager, "thomas.teacher@lexiconlms.se", "teacher", "Thomas", "Thomasson");
             _addTeacher(context, userManager, "t2@x.y", "pppppp", "t2", "t2sson");
@@ -109,12 +110,13 @@ namespace LexiconLMS.Migrations
                new Course { Name = "C++ Basic Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the basic C++ course.You will have an introduction to all the basic parts of the quite extensive language C++ as in the 2014 standard. Course focus is on practical use of the language for typical situations, and design in an object oriented way.All theory is applied in hands - on labs where all produced code is platform independent. The course is also IDE independent." },
                new Course { Name = "C++ Advanced Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the course for experienced C++ programmers with a need to expand their skills into a complete knowledge of the language and new ways to use it for stable, effective and well designed applications. " });
 
+            _addStudent(context, userManager, "Lena.Sten@lexiconlms.se",    courseId: 5);
+            _addStudent(context, userManager, "Oscar.Ek@lexiconlms.se",     courseId: 7);
+            _addStudent(context, userManager, "Maria.Eklund@lexiconlms.se", courseId: 2);
+
             //_addStudent(context, userManager, "Mia.Ström@lexiconlms.se", "Python 1");
-            _addStudent(context, userManager, "Lena.Sten@lexiconlms.se", "GIT kurs");
             //_addStudent(context, userManager, "Hans.Ågren@lexiconlms.se" , "GIT kurs");            
             //_addStudent(context, userManager, "Lars.Björk@lexiconlms.se", "Java programmering - Grundkurs ");
-            _addStudent(context, userManager, "Oscar.Ek@lexiconlms.se", "C++ Basic Programming");
-            _addStudent(context, userManager, "Maria.Eklund@lexiconlms.se", "C-programmering - Grundkurs");
 
 
 #if false
@@ -141,15 +143,6 @@ namespace LexiconLMS.Migrations
             aUser = userManager.FindByName("Eva.Asp@lexiconlms.se");
             userManager.AddToRole(aUser.Id, Role.Teacher);
 
-            // Seeded student[s]
-            aUser = userManager.FindByName("Hans.Ågren@lexiconlms.se");
-            aUser = userManager.FindByName("Lars.Björk@lexiconlms.se");
-            aUser = userManager.FindByName("Lena.Sten@lexiconlms.se");
-            aUser = userManager.FindByName("Mia.Ström@lexiconlms.se");
-            aUser = userManager.FindByName("Oscar.Ek@lexiconlms.se");
-            aUser = userManager.FindByName("Maria.Ekström@lexiconlms.se");
-            userManager.AddToRole(aUser.Id, Role.Student);
-
             context.Courses.AddOrUpdate(
                c => c.Name,
                new Course { Name = "Python 1", StartDate = DateTime.Now.AddDays(2), Description = "Python är ett programmeringsspråk som låter dig arbeta snabbt och integrera system mer effektivt. Python har vuxit sig extremt starkt på sista tiden. Idag är Google, YouTube, Pinterest, DropBox, Instagram med fler skrivna i Python." },
@@ -161,6 +154,16 @@ namespace LexiconLMS.Migrations
                new Course { Name = "C-programmering - Grundkurs", StartDate = DateTime.Now.AddDays(2), Description = "Denna utbildning vänder sig till programmerare och systemerare som ska underhålla befintlig C-programvara. Du får lära dig läsa, förstå, vidare- och nyutveckla C-kod, vad som ger portabilitet respektive icke-portabilitet och ANSI-standardbiblioteket. Du får också en orientering i moderna utvecklingsverktyg." },
                new Course { Name = "C++ Basic Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the basic C++ course.You will have an introduction to all the basic parts of the quite extensive language C++ as in the 2014 standard. Course focus is on practical use of the language for typical situations, and design in an object oriented way.All theory is applied in hands - on labs where all produced code is platform independent. The course is also IDE independent." },
                new Course { Name = "C++ Advanced Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the course for experienced C++ programmers with a need to expand their skills into a complete knowledge of the language and new ways to use it for stable, effective and well designed applications. " });
+            // Seeded student[s]
+
+            aUser = userManager.FindByName("Hans.Ågren@lexiconlms.se");
+            aUser = userManager.FindByName("Lars.Björk@lexiconlms.se");
+            aUser = userManager.FindByName("Lena.Sten@lexiconlms.se");
+            aUser = userManager.FindByName("Mia.Ström@lexiconlms.se");
+            aUser = userManager.FindByName("Oscar.Ek@lexiconlms.se");
+            aUser = userManager.FindByName("Maria.Ekström@lexiconlms.se");
+            userManager.AddToRole(aUser.Id, Role.Student);
+
 #endif
         }
     }
