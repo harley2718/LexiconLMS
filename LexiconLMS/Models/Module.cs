@@ -12,7 +12,7 @@ namespace LexiconLMS.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [StringLength(50, ErrorMessage = "Fältet år inte innehålla mer än 50 tecken.")]
+        [StringLength(50, ErrorMessage = "Fältet får inte innehålla mer än 50 tecken.")]
         [DisplayName("Namn")]
         public string Name { get; set; }
 
