@@ -15,7 +15,8 @@
     <h4></h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @*@Html.HiddenFor(model => model.Id)*@
+    @Html.HiddenFor(m => m.Password)
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.UserFName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,12 +42,14 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+    <!--  This field should not be used in the edit controllers or this view.
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
+    -->
 
     <div class="form-group">
         @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label col-md-2" })
