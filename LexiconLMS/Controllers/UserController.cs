@@ -115,6 +115,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: User/Edit/5
+        // CM_240_G120
         public ActionResult Edit(string id)
         {
             var users = db.Users
@@ -126,6 +127,7 @@ namespace LexiconLMS.Controllers
                         UserLName = u.LastName,
                         UserEmail = u.Email,
                         UserName = u.UserName,
+                        Password = "not being updated",
                         UserPhoneNumber = u.PhoneNumber
                     }
                 );
@@ -141,19 +143,36 @@ namespace LexiconLMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
-        public ActionResult Edit([Bind(Include = "UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel user)
+        //public ActionResult Edit([Bind(Include = "UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel model)
+        // CM_240_P121
+        public ActionResult Edit([Bind(Include = "Id,UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(activity).State = EntityState.Modified;
-#if false
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-#endif
+                model.Password = "not being updated";  // If this is seen in database, then something has gone wrong.
+
+                var userStore = new UserStore<ApplicationUser>(db);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+
+                // Get the existing student from the db
+                var user = userManager.FindById(model.Id);
+
+                // Update it with the values from the view model
+                user.Id          = model.Id;
+                user.CourseId    = model.CourseId;
+                user.PasswordHash = "TODO:DoNotUpdate";
+                user.FirstName   = model.UserFName;
+                user.LastName    = model.UserLName;
+                user.UserName    = model.UserName;
+                user.Email       = model.UserEmail;
+                user.PhoneNumber = model.UserPhoneNumber;
+
+                // Apply the changes if any to the db
+                userManager.Update(user);
+
                 return RedirectToAction("Index", "User");
             }
-            //return View(activity);
-            return View(user);
+            return View(model);
         }
 
     }
