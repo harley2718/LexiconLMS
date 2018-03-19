@@ -21,7 +21,7 @@ namespace LexiconLMS.Models
         public DbSet<Module> Modules { get; set; }
         //public DbSet<Document> Documents { get; set; }
         public DbSet<Activity> Activity { get; set; }
-        public DbSet<ActivityType> ActivitytTypes { get; set; }
+        //public DbSet<ActivityType> ActivitytTypes { get; set; }
 
     }
 

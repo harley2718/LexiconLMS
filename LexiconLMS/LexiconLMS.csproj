@@ -204,10 +204,17 @@
     <Compile Include="Migrations\201803141206265_hd3.Designer.cs">
       <DependentUpon>201803141206265_hd3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803191321397_activities.cs" />
+    <Compile Include="Migrations\201803191321397_activities.Designer.cs">
+      <DependentUpon>201803191321397_activities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803191341058_activities2.cs" />
+    <Compile Include="Migrations\201803191341058_activities2.Designer.cs">
+      <DependentUpon>201803191341058_activities2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
-    <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -314,6 +321,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803141206265_hd3.resx">
       <DependentUpon>201803141206265_hd3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803191321397_activities.resx">
+      <DependentUpon>201803191321397_activities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803191341058_activities2.resx">
+      <DependentUpon>201803191341058_activities2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

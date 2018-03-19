@@ -1,15 +1,23 @@
 ﻿@model LexiconLMS.Models.Activity
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaljvy aktiviteter";
 }
 
-<h2>Details</h2>
+<h2>Detaljvy aktivitet</h2>
 
 <div>
-    <h4>Activity</h4>
+    <h4></h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -34,9 +42,17 @@
             @Html.DisplayFor(model => model.EndDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

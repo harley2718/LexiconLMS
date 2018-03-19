@@ -46,7 +46,7 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
+        public ActionResult Create([Bind(Include = "Id,Type,Name,StartDate,EndDate,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
+        public ActionResult Edit([Bind(Include = "Id,Type,Name,StartDate,EndDate,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
