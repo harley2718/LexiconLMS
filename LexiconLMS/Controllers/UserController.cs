@@ -154,7 +154,14 @@ namespace LexiconLMS.Controllers
                         Password        = "not being updated",
                         UserPhoneNumber = u.PhoneNumber
                     }
-                );
+                ).ToList();
+
+            if (users.Count != 1) {
+                //
+                // TODO: Implement better error handling if user id not [longer] valid.
+                //
+                return RedirectToAction("Index", "User");
+            }
 
             UserViewModel user = users.ToList()[0];
 
