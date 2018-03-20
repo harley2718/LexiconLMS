@@ -13,13 +13,10 @@ namespace LexiconLMS.Models.ViewModels
     {
         public string Id { get; set; }
 
-#if true
         public int     CourseId   { get; set; }  // Each students should be
         public string  CourseName { get; set; }  // associated with a course.
         public Boolean IsTeacher  { get; set; }  // A couple of booleans can
-        public Boolean IsStudent  { get; set; }  // be used to control variants
-                                                 // of a view.
-#endif
+        public Boolean IsStudent  { get; set; }  // be used to control variants of a view.
 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(20, ErrorMessage = "Fältet får inte innehålla mer än 20 tecken.")]
