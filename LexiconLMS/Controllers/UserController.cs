@@ -27,41 +27,20 @@ namespace LexiconLMS.Controllers
         //}
 
         // CM_240_G100
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
-            int  courseId        = (id != null) ? id.Value : 0;
-            bool teacherListFlag = (courseId == 0);
-            bool studentListFlag = (courseId != 0);
-            bool teacherRoleFlag = User.IsInRole(Role.Teacher);
-            bool studentRoleFlag = User.IsInRole(Role.Student);
-
-            var users =
-                db.Users
-                .Where(omega => (((omega.CourseId != null) ? omega.CourseId.Value : 0) == courseId))
-                .Select(u => new UserViewModel {
-                    Id              = u.Id,
-                    CourseId        = courseId,
-                    UserFName       = u.FirstName,
-                    UserLName       = u.LastName,
-                    UserEmail       = u.Email,
-                    UserName        = u.UserName,
-                    UserPhoneNumber = u.PhoneNumber
-                });
-
-            var displayNameContainer = new UserViewModel();
-
-            var model = new UserViewModelWithCourseId
+            var users = db.Users.Select(u => new UserViewModel
             {
-                Users                = users,
-                DisplayNameContainer = displayNameContainer,
-                CourseId             = courseId,
-                TeacherListFlag      = teacherListFlag,
-                StudentListFlag      = studentListFlag,
-                TeacherRoleFlag      = teacherRoleFlag,
-                StudentRoleFlag      = studentRoleFlag
-            };
-
-            return View(model);
+                Id        = u.Id,
+                CourseId = (u.CourseId != null) ? u.CourseId.Value : 0,
+                UserFName = u.FirstName,
+                UserLName = u.LastName,
+                UserEmail = u.Email,
+                UserName = u.UserName,
+                UserPhoneNumber = u.PhoneNumber
+            }
+            );
+            return View(users);
         }
 
         // CM_240_G110
@@ -139,19 +118,16 @@ namespace LexiconLMS.Controllers
         // CM_240_G120
         public ActionResult Edit(string id)
         {
-            // TODO: Possibly, simplify code using Db.Users.Find(id), to avoid Linq.
-
             var users = db.Users
                 .Where(omega => (omega.Id == id))
                 .Select(
                     u => new UserViewModel {
-                        Id              = u.Id,
-                        CourseId        = (u.CourseId != null) ? (u.CourseId.Value) : 0,
-                        UserFName       = u.FirstName,
-                        UserLName       = u.LastName,
-                        UserEmail       = u.Email,
-                        UserName        = u.UserName,
-                        Password        = "not being updated",
+                        Id = u.Id,
+                        UserFName = u.FirstName,
+                        UserLName = u.LastName,
+                        UserEmail = u.Email,
+                        UserName = u.UserName,
+                        Password = "not being updated",
                         UserPhoneNumber = u.PhoneNumber
                     }
                 );
@@ -173,20 +149,31 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = db.Users.Find(model.Id);
+                model.Password = "not being updated";  // If this is seen in database, then something has gone wrong.
 
+                var userStore = new UserStore<ApplicationUser>(db);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+
+                // Get the existing student from the db
+                var user = userManager.FindById(model.Id);
+
+                // Update it with the values from the view model
+                user.Id          = model.Id;
+                user.CourseId    = model.CourseId;
+                user.PasswordHash = "TODO:DoNotUpdate";
                 user.FirstName   = model.UserFName;
                 user.LastName    = model.UserLName;
                 user.UserName    = model.UserName;
                 user.Email       = model.UserEmail;
                 user.PhoneNumber = model.UserPhoneNumber;
 
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                // Apply the changes if any to the db
+                userManager.Update(user);
 
                 return RedirectToAction("Index", "User");
             }
             return View(model);
         }
+
     }
 }
