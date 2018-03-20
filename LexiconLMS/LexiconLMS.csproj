@@ -212,6 +212,26 @@
     <Compile Include="Migrations\201803191341058_activities2.Designer.cs">
       <DependentUpon>201803191341058_activities2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803200751220_datetimepicker.cs" />
+    <Compile Include="Migrations\201803200751220_datetimepicker.Designer.cs">
+      <DependentUpon>201803200751220_datetimepicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200900563_datetimepicker2.cs" />
+    <Compile Include="Migrations\201803200900563_datetimepicker2.Designer.cs">
+      <DependentUpon>201803200900563_datetimepicker2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803200946365_datetimepicker3.cs" />
+    <Compile Include="Migrations\201803200946365_datetimepicker3.Designer.cs">
+      <DependentUpon>201803200946365_datetimepicker3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803201032056_datetimepicker4.cs" />
+    <Compile Include="Migrations\201803201032056_datetimepicker4.Designer.cs">
+      <DependentUpon>201803201032056_datetimepicker4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803201144232_datepicker5.cs" />
+    <Compile Include="Migrations\201803201144232_datepicker5.Designer.cs">
+      <DependentUpon>201803201144232_datepicker5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -229,6 +249,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -239,9 +260,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -328,6 +351,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803191341058_activities2.resx">
       <DependentUpon>201803191341058_activities2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200751220_datetimepicker.resx">
+      <DependentUpon>201803200751220_datetimepicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200900563_datetimepicker2.resx">
+      <DependentUpon>201803200900563_datetimepicker2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803200946365_datetimepicker3.resx">
+      <DependentUpon>201803200946365_datetimepicker3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803201032056_datetimepicker4.resx">
+      <DependentUpon>201803201032056_datetimepicker4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803201144232_datepicker5.resx">
+      <DependentUpon>201803201144232_datepicker5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

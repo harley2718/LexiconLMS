@@ -16,16 +16,16 @@ namespace LexiconLMS.Models
         [DisplayName("Namn")]
         public string Name { get; set; }
 
-        [DisplayName("Startdatum")]
+        [Display(Name = "Startdatum")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
 
         [DisplayName("Slutdatum")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime EndDate { get; set; }
 
         [DisplayName("Beskrivning")]
