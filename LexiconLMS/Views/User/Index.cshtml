@@ -1,64 +1,76 @@
-﻿@model IEnumerable<LexiconLMS.Models.ViewModels.UserViewModel>
+﻿@model LexiconLMS.Models.ViewModels.UserViewModelWithCourseId
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Användare";
 }
 
-<h2>Användare</h2>
+<h2>
+    Användare
+    @*@if (Model.TeacherListFlag)
+    {
+        = Larare
+    }
+    @if (Model.StudentListFlag)
+    {
+        = Elever
+    }*@
+</h2>
 
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
+    @*@Html.ActionLink("Skapa ny användare", "Create")*@
+    @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, null)
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserFName)
+            @Html.DisplayNameFor(model => model.DisplayNameContainer.UserFName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserLName)
+            @Html.DisplayNameFor(model => model.DisplayNameContainer.UserLName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.DisplayNameContainer.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserEmail)
+            @Html.DisplayNameFor(model => model.DisplayNameContainer.UserEmail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserPhoneNumber)
+            @Html.DisplayNameFor(model => model.DisplayNameContainer.UserPhoneNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CourseId)
+            @Html.DisplayNameFor(model => model.DisplayNameContainer.CourseId)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserFName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserLName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserPhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseId)
-        </td>
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserFName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserLName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
