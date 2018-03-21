@@ -99,7 +99,7 @@ namespace LexiconLMS.Migrations
                                        string surName = "en3 placeholder")
         {
             System.Console.WriteLine("HEJ");
-            string userName = email + Qqq.GetSpunk().ToString();
+            string userName = "user" + Qqq.GetSpunk().ToString() + "@d.t";
 
             if (context.Users.Any(u => u.UserName == userName))
             {
