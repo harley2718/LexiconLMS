@@ -6,6 +6,17 @@
 
 <h2>Kurser</h2>
 
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Listvy kurser</div>
+        </li>
+    </ul>
+</div>
+
 <p>
     @Html.ActionLink("Skapa kurs", "Create")
 </p>
@@ -22,23 +33,23 @@
     </tr>
     @foreach (var item in Model)
     {
-            <tr>
-                <td class="align-bottom">
-                    @if ((item.Id == ViewBag.courseId)||(item.Id == ViewBag.moduleId))
-                        {<label class="text-danger">=>&nbsp;&nbsp;</label>}
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td class="align-bottom">
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td align="center">
-                    @Html.ActionLink("Detaljer", "Details", new { id = item.Id })  |
-                    @Html.ActionLink("Redigera", "Edit", new { id = item.Id })
-                </td>
-                <td align="right" width="200px">
-                    @Html.ActionLink("Moduler", "Index", "Module", new { courseId = item.Id }, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Elever", "Index", "User", new { id = item.Id }, new { @class = "btn btn-default" })
-                </td>
-            </tr>
+        <tr>
+            <td class="align-bottom">
+                @if ((item.Id == ViewBag.courseId) || (item.Id == ViewBag.moduleId))
+                {<label class="text-success">=>&nbsp;&nbsp;</label>}
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="align-bottom">
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td align="center">
+                @Html.ActionLink("Detaljer", "Details", new { id = item.Id })  |
+                @Html.ActionLink("Redigera", "Edit", new { id = item.Id })
+            </td>
+            <td align="right" width="200px">
+                @Html.ActionLink("Moduler", "Index", "Module", new { courseId = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Elever", "Index", "User", new { id = item.Id }, new { @class = "btn btn-default" })
+            </td>
+        </tr>
     }
-    </table>
+</table>

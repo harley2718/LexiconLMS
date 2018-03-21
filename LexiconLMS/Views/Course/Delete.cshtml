@@ -1,14 +1,25 @@
 ﻿@model LexiconLMS.Models.Course
 
 @{
-    ViewBag.Title = "Radera kurs";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Radera kurs</h2>
+<h2>Delete</h2>
 
-<h3>Är du säker på att du vill radera kursen?</h3>
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Ta bort kurs</div>
+        </li>
+    </ul>
+</div>
+
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4></h4>
+    <h4>Course</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,15 +48,12 @@
 
     </dl>
 
-    @using (Html.BeginForm())
-    {
+    @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Radera" class="btn btn-default" />
-    </div>
-    <div>
-        @Html.ActionLink("Tillbaka till kurser", "Index")
-    </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     }
 </div>
