@@ -4,6 +4,20 @@
 }
 <h2>Användare</h2>
 
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Skapa</div>
+        </li>
+    </ul>
+</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
