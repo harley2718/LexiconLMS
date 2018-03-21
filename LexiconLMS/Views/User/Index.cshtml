@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<LexiconLMS.Models.ViewModels.UserViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Användare";
 }
 
 <h2>Användare</h2>
 
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
 <table class="table">
     <tr>
         <th>
@@ -48,9 +45,9 @@
         </td>
   
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Redigera", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Radera", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

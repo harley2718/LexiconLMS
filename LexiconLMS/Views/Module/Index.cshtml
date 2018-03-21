@@ -33,7 +33,7 @@
     <tr>
         <td>
             @if (item.Id == ViewBag.moduleId)
-        {<label class="text-success">=>&nbsp;&nbsp;</label>}
+        {<label class="text-danger">=>&nbsp;&nbsp;</label>}
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -51,7 +51,7 @@
             @Html.ActionLink("Radera", "Delete", new { id = item.Id })
         </td>
         <td align="right" width="200px">
-            @Html.ActionLink("Aktiviteter", "Index", "Activities", new { moduleId = ViewBag.moduleId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Aktiviteter", "Index", "Activities", new { moduleId = item.Id }, new { @class = "btn btn-default" })
         </td>
     </tr>
     }

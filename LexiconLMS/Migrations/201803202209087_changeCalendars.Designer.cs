@@ -7,13 +7,13 @@ namespace LexiconLMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class datetimepicker3 : IMigrationMetadata
+    public sealed partial class changeCalendars : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(datetimepicker3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(changeCalendars));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803200946365_datetimepicker3"; }
+            get { return "201803202209087_changeCalendars"; }
         }
         
         string IMigrationMetadata.Source

@@ -87,14 +87,9 @@ namespace LexiconLMS.Migrations
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
-//            var emails = new[] { "thomas.teacher@lexiconlms.se", "hans.teacher@lexiconlms.se" };
-
             _addTeacher(context, userManager, "thomas.teacher@lexiconlms.se", "teacher", "Thomas", "Thomasson");
             _addTeacher(context, userManager, "t2@x.y", "pppppp", "t2", "t2sson");
-            //_addTeacher(context, userManager, "Thomas.Svärd@lexiconlms.se");
             _addTeacher(context, userManager, "Peter.Andersson@lexiconlms.se");
-            //_addTeacher(context, userManager, "Åsa.Svensson@lexiconlms.se");
-            //_addTeacher(context, userManager, "Åke.Larsson@lexiconlms.se");
             _addTeacher(context, userManager, "Eva.Asp@lexiconlms.se");
 
             context.Courses.AddOrUpdate(
@@ -109,10 +104,7 @@ namespace LexiconLMS.Migrations
                new Course { Name = "C++ Basic Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the basic C++ course.You will have an introduction to all the basic parts of the quite extensive language C++ as in the 2014 standard. Course focus is on practical use of the language for typical situations, and design in an object oriented way.All theory is applied in hands - on labs where all produced code is platform independent. The course is also IDE independent." },
                new Course { Name = "C++ Advanced Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the course for experienced C++ programmers with a need to expand their skills into a complete knowledge of the language and new ways to use it for stable, effective and well designed applications. " });
 
-            //_addStudent(context, userManager, "Mia.Ström@lexiconlms.se", "Python 1");
             _addStudent(context, userManager, "Lena.Sten@lexiconlms.se", "GIT kurs");
-            //_addStudent(context, userManager, "Hans.Ågren@lexiconlms.se" , "GIT kurs");            
-            //_addStudent(context, userManager, "Lars.Björk@lexiconlms.se", "Java programmering - Grundkurs ");
             _addStudent(context, userManager, "Oscar.Ek@lexiconlms.se", "C++ Basic Programming");
             _addStudent(context, userManager, "Maria.Eklund@lexiconlms.se", "C-programmering - Grundkurs");
 

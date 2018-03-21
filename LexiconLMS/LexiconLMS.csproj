@@ -200,37 +200,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803161051343_lh_init.cs" />
-    <Compile Include="Migrations\201803161051343_lh_init.Designer.cs">
-      <DependentUpon>201803161051343_lh_init.cs</DependentUpon>
+    <Compile Include="Migrations\201803201911000_leho_lpt.cs" />
+    <Compile Include="Migrations\201803201911000_leho_lpt.Designer.cs">
+      <DependentUpon>201803201911000_leho_lpt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803191321397_activities.cs" />
-    <Compile Include="Migrations\201803191321397_activities.Designer.cs">
-      <DependentUpon>201803191321397_activities.cs</DependentUpon>
+    <Compile Include="Migrations\201803202209087_changeCalendars.cs" />
+    <Compile Include="Migrations\201803202209087_changeCalendars.Designer.cs">
+      <DependentUpon>201803202209087_changeCalendars.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803191341058_activities2.cs" />
-    <Compile Include="Migrations\201803191341058_activities2.Designer.cs">
-      <DependentUpon>201803191341058_activities2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803200751220_datetimepicker.cs" />
-    <Compile Include="Migrations\201803200751220_datetimepicker.Designer.cs">
-      <DependentUpon>201803200751220_datetimepicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803200900563_datetimepicker2.cs" />
-    <Compile Include="Migrations\201803200900563_datetimepicker2.Designer.cs">
-      <DependentUpon>201803200900563_datetimepicker2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803200946365_datetimepicker3.cs" />
-    <Compile Include="Migrations\201803200946365_datetimepicker3.Designer.cs">
-      <DependentUpon>201803200946365_datetimepicker3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803201032056_datetimepicker4.cs" />
-    <Compile Include="Migrations\201803201032056_datetimepicker4.Designer.cs">
-      <DependentUpon>201803201032056_datetimepicker4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803201144232_datepicker5.cs" />
-    <Compile Include="Migrations\201803201144232_datepicker5.Designer.cs">
-      <DependentUpon>201803201144232_datepicker5.cs</DependentUpon>
+    <Compile Include="Migrations\201803202339590_addedModuleIdToActivity.cs" />
+    <Compile Include="Migrations\201803202339590_addedModuleIdToActivity.Designer.cs">
+      <DependentUpon>201803202339590_addedModuleIdToActivity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -342,29 +322,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803161051343_lh_init.resx">
-      <DependentUpon>201803161051343_lh_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803201911000_leho_lpt.resx">
+      <DependentUpon>201803201911000_leho_lpt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803191321397_activities.resx">
-      <DependentUpon>201803191321397_activities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803202209087_changeCalendars.resx">
+      <DependentUpon>201803202209087_changeCalendars.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803191341058_activities2.resx">
-      <DependentUpon>201803191341058_activities2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803200751220_datetimepicker.resx">
-      <DependentUpon>201803200751220_datetimepicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803200900563_datetimepicker2.resx">
-      <DependentUpon>201803200900563_datetimepicker2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803200946365_datetimepicker3.resx">
-      <DependentUpon>201803200946365_datetimepicker3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803201032056_datetimepicker4.resx">
-      <DependentUpon>201803201032056_datetimepicker4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803201144232_datepicker5.resx">
-      <DependentUpon>201803201144232_datepicker5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803202339590_addedModuleIdToActivity.resx">
+      <DependentUpon>201803202339590_addedModuleIdToActivity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

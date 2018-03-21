@@ -15,9 +15,34 @@ namespace LexiconLMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Activities
-        public ActionResult Index()
+        public ActionResult Index(int? courseId,int? moduleId, int? activitiesId)
         {
-            return View(db.Activity.ToList());
+            //ViewBag.moduleId = moduleId;
+            if (activitiesId.HasValue)
+            {
+                ViewBag.activitiesId = activitiesId;
+            }
+            if (courseId.HasValue)
+            {
+                ViewBag.courseId = courseId;
+            }
+            if (moduleId.HasValue)
+            {
+                ViewBag.moduleId = moduleId;
+                List<Activity> activities =
+                db.Activity.Where(a => a.ModuleId == moduleId).ToList();
+
+                return View(activities);
+            }
+            else
+            {
+                ViewBag.moduleId = 0;
+                List<Activity> activities =
+                db.Activity.Where(a => a.ModuleId == 0).ToList();
+
+                return View(activities);
+            }
+
         }
 
         // GET: Activities/Details/5
@@ -36,8 +61,10 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: Activities/Create
-        public ActionResult Create()
+        public ActionResult Create(int? moduleId)
         {
+            ViewBag.moduleId = moduleId.Value;
+
             return View();
         }
 
@@ -46,13 +73,13 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,Name,StartDate,EndDate,Description")] Activity activity)
+        public ActionResult Create([Bind(Include = "Id,ModuleId,Type,Name,StartDate,StartTime,EndTime,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Activity.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Activity", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
             }
 
             return View(activity);
@@ -66,6 +93,7 @@ namespace LexiconLMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Activity activity = db.Activity.Find(id);
+
             if (activity == null)
             {
                 return HttpNotFound();
@@ -78,13 +106,13 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,Name,StartDate,EndDate,Description")] Activity activity)
+        public ActionResult Edit([Bind(Include = "Id,ModuleId,Type,Name,StartDate,StartTime, EndTime,Description")] Activity activity)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
             }
             return View(activity);
         }

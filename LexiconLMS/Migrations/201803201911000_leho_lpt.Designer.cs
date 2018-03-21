@@ -7,13 +7,13 @@ namespace LexiconLMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class datepicker5 : IMigrationMetadata
+    public sealed partial class leho_lpt : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(datepicker5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(leho_lpt));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803201144232_datepicker5"; }
+            get { return "201803201911000_leho_lpt"; }
         }
         
         string IMigrationMetadata.Source
