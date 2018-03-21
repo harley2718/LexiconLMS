@@ -19,7 +19,7 @@ namespace LexiconLMS.Models
         [Display(Name = "Startdatum")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
         [DisplayName("Slutdatum")]

@@ -11,6 +11,8 @@ namespace LexiconLMS.Models
     {
         public int Id { get; set; }
 
+        public int ModuleId { get; set; }
+
         [DisplayName("Typ")]
         public ActivityType Type { get; set; }
 
@@ -19,17 +21,21 @@ namespace LexiconLMS.Models
         [DisplayName("Namn")]
         public string Name { get; set; }
 
-        [Display(Name = "Start")]
+        [Display(Name = "Datum")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd H:mm tt}")]
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
-        [DisplayName("Slut")]
+        [Display(Name = "Starttid")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd H:mm tt}")]
-        public DateTime EndDate { get; set; }
+        [DataType(DataType.Time)]
+        public DateTime StartTime { get; set; }
+
+        [DisplayName("Sluttid")]
+        [Required(ErrorMessage = "Fältet får inte vara tomt.")]
+        [DataType(DataType.Time)]
+        public DateTime EndTime { get; set; }
 
         [DisplayName("Beskrivning")]
         public string Description { get; set; }
