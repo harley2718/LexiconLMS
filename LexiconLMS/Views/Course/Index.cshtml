@@ -48,7 +48,7 @@
             </td>
             <td align="right" width="200px">
                 @Html.ActionLink("Moduler", "Index", "Module", new { courseId = item.Id }, new { @class = "btn btn-default" })
-                @Html.ActionLink("Elever", "Index", "User", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Elever", "Index", "User", new { id = item.Id }, new { @class = "btn btn-default disabled" })
             </td>
         </tr>
     }
