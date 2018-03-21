@@ -36,7 +36,7 @@
         <tr>
             <td class="align-bottom">
                 @if ((item.Id == ViewBag.courseId) || (item.Id == ViewBag.moduleId))
-                {<label class="text-success">=>&nbsp;&nbsp;</label>}
+                {<label class="text-danger">=>&nbsp;&nbsp;</label>}
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td class="align-bottom">
