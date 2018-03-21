@@ -123,13 +123,9 @@ namespace LexiconLMS.Controllers
                 aUser = userManager.FindByName(user.UserName);
                 userManager.AddToRole(aUser.Id, Role.Student);
 
-                // Connect user to course.
-
-
-                // db.SaveChanges();
+                // db.SaveChanges();  ???
 
                 return RedirectToAction("Index", "Course", new { id = user.Id });
-
             }
 
             return View(user);
