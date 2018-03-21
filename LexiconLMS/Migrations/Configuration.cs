@@ -7,6 +7,17 @@ namespace LexiconLMS.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+    public class Qqq
+    {
+        public static int Spunk = 0;
+
+        public static int GetSpunk()
+        {
+            LexiconLMS.Migrations.Qqq.Spunk += 1;
+            return LexiconLMS.Migrations.Qqq.Spunk;
+        }
+    }
+
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -34,19 +45,24 @@ namespace LexiconLMS.Migrations
             {
                 throw new Exception(string.Join("\n", result.Errors));
             }
+
+            context.SaveChanges();
+
             ApplicationUser aUser;
             aUser = userManager.FindByName(userName);
             userManager.AddToRole(aUser.Id, Role.Teacher);
+
+            context.SaveChanges();
         }
 
         public static void _addStudent(ApplicationDbContext context,
                                        UserManager<ApplicationUser> userManager,
                                        string email,
                                        string CourseName = "C#",
-                                       string password   = "pppppp",
-                                       string firstName  = "fn placeholder",
-                                       string surName    = "en placeholder",
-                                       int    courseId   = 1)
+                                       string password = "pppppp",
+                                       string firstName = "fn placeholder",
+                                       string surName = "en placeholder",
+                                       int courseId = 1)
         {
             string userName = email;
 
@@ -55,18 +71,74 @@ namespace LexiconLMS.Migrations
                 return;
             }
 
-            var user = new ApplicationUser { UserName = email, Email = email, CourseId = courseId };
+            int? courseIdContainer = courseId;
+
+            var user = new ApplicationUser { UserName = email, Email = email, CourseId = courseIdContainer };
             var result = userManager.Create(user, password);
             if (!result.Succeeded)
             {
                 throw new Exception(string.Join("\n", result.Errors));
             }
+
+            context.SaveChanges();
+
             ApplicationUser aUser;
             aUser = userManager.FindByName(userName);
             userManager.AddToRole(aUser.Id, Role.Student);
+
+            context.SaveChanges();
+        }
+
+        public static void _addUser   (ApplicationDbContext context,
+                                       UserManager<ApplicationUser> userManager,
+                                       int courseId,
+                                       string email = "e2@e.e",
+                                       string CourseName = "CC#",
+                                       string password = "qpppppp",
+                                       string firstName = "fn2 placeholder",
+                                       string surName = "en3 placeholder")
+        {
+            System.Console.WriteLine("HEJ");
+            string userName = email + Qqq.GetSpunk().ToString();
+
+            if (context.Users.Any(u => u.UserName == userName))
+            {
+                System.Console.WriteLine("HEJ2");
+                return;
+            }
+
+            System.Console.WriteLine("HEJ3");
+            int? courseIdContainer = courseId;
+
+            System.Console.WriteLine("HEJ4");
+            ApplicationUser user;
+            if (courseId == 0) {
+                System.Console.WriteLine("HEJ5");
+                user = new ApplicationUser { UserName = userName, Email = email };
+            } else {
+                System.Console.WriteLine("HEJ6");
+                //user = new ApplicationUser { UserName = userName, Email = email, CourseId = courseIdContainer };
+                user = new ApplicationUser { UserName = userName, Email = email, CourseId = courseIdContainer.Value };
+            }
+            System.Console.WriteLine("HEJ7");
+            var result = userManager.Create(user, password);
+            System.Console.WriteLine("HEJ8");
+            if (!result.Succeeded)
+            {
+                throw new Exception(string.Join("\n", result.Errors));
+            }
+
+            context.SaveChanges();
+
+            ApplicationUser aUser;
+            aUser = userManager.FindByName(userName);
+            userManager.AddToRole(aUser.Id, Role.Student);
+
+            context.SaveChanges();
         }
 
         protected override void Seed(ApplicationDbContext context)
+        // public override void Seed(ApplicationDbContext context)
         {
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -85,16 +157,7 @@ namespace LexiconLMS.Migrations
                 }
             }
 
-            var userStore = new UserStore<ApplicationUser>(context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
-
-            _addTeacher(context, userManager, "thomas.teacher@lexiconlms.se", "teacher", "Thomas", "Thomasson");
-            _addTeacher(context, userManager, "t2@x.y", "pppppp", "t2", "t2sson");
-            //_addTeacher(context, userManager, "Thomas.Svärd@lexiconlms.se");
-            _addTeacher(context, userManager, "Peter.Andersson@lexiconlms.se");
-            //_addTeacher(context, userManager, "Åsa.Svensson@lexiconlms.se");
-            //_addTeacher(context, userManager, "Åke.Larsson@lexiconlms.se");
-            _addTeacher(context, userManager, "Eva.Asp@lexiconlms.se");
+            context.SaveChanges();
 
             context.Courses.AddOrUpdate(
                c => c.Name,
@@ -108,13 +171,71 @@ namespace LexiconLMS.Migrations
                new Course { Name = "C++ Basic Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the basic C++ course.You will have an introduction to all the basic parts of the quite extensive language C++ as in the 2014 standard. Course focus is on practical use of the language for typical situations, and design in an object oriented way.All theory is applied in hands - on labs where all produced code is platform independent. The course is also IDE independent." },
                new Course { Name = "C++ Advanced Programming", StartDate = DateTime.Now.AddDays(2), Description = "This is the course for experienced C++ programmers with a need to expand their skills into a complete knowledge of the language and new ways to use it for stable, effective and well designed applications. " });
 
+            context.SaveChanges();
+
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+#if false
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            _addUser(context, userManager, 0);
+            context.SaveChanges();
+#endif
+
+#if true
+            _addUser(context, userManager, 1);
+            _addUser(context, userManager, 1);
+            _addUser(context, userManager, 1);
+            _addUser(context, userManager, 2);
+            _addUser(context, userManager, 2);
+            _addUser(context, userManager, 3);
+            _addUser(context, userManager, 3);
+            _addUser(context, userManager, 3);
+            _addUser(context, userManager, 3);
+            _addUser(context, userManager, 3);
+            _addUser(context, userManager, 4);
+            _addUser(context, userManager, 4);
+            _addUser(context, userManager, 4);
+            _addUser(context, userManager, 5);
+            _addUser(context, userManager, 5);
+            _addUser(context, userManager, 5);
+            _addUser(context, userManager, 5);
+            _addUser(context, userManager, 6);
+            _addUser(context, userManager, 6);
+            _addUser(context, userManager, 7);
+            _addUser(context, userManager, 7);
+            _addUser(context, userManager, 7);
+            _addUser(context, userManager, 8);
+            _addUser(context, userManager, 8);
+            _addUser(context, userManager, 9);
+            _addUser(context, userManager, 9);
+            _addUser(context, userManager, 9);
+#endif
+#if true
+            _addTeacher(context, userManager, "thomas.teacher@lexiconlms.se", "teacher", "Thomas", "Thomasson");
+            _addTeacher(context, userManager, "Peter.Andersson@lexiconlms.se");
+            _addTeacher(context, userManager, "Eva.Asp@lexiconlms.se");
+            _addTeacher(context, userManager, "t2@x.y", "pppppp", "t2", "t2sson");
+
+            context.SaveChanges();
+#endif
+
+#if false
             _addStudent(context, userManager, "Lena.Sten@lexiconlms.se",    courseId: 5);
             _addStudent(context, userManager, "Oscar.Ek@lexiconlms.se",     courseId: 7);
             _addStudent(context, userManager, "Maria.Eklund@lexiconlms.se", courseId: 2);
 
-            //_addStudent(context, userManager, "Mia.Ström@lexiconlms.se", "Python 1");
-            //_addStudent(context, userManager, "Hans.Ågren@lexiconlms.se" , "GIT kurs");            
-            //_addStudent(context, userManager, "Lars.Björk@lexiconlms.se", "Java programmering - Grundkurs ");
+            context.SaveChanges();
+#endif
         }
     }
 }
