@@ -6,6 +6,20 @@
 
 <h2>Detaljer</h2>
 
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Detaljvy</div>
+        </li>
+    </ul>
+</div>
+
 <div>
     <h4></h4>
     <hr />
@@ -54,6 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Tillbaka till kurser", "Index", "Course")
 </p>

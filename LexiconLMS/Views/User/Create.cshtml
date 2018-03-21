@@ -1,8 +1,22 @@
 ﻿@model LexiconLMS.Models.ViewModels.UserViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Skapa användare";
 }
-<h2>Användare</h2>
+<h2>Skapa användare</h2>
+
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Skapa</div>
+        </li>
+    </ul>
+</div>
 
 @using (Html.BeginForm())
 {
@@ -58,7 +72,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Skapa" class="btn btn-default" />
+                <input type="submit" value="Spara" class="btn btn-default" />
             </div>
         </div>
     </div>

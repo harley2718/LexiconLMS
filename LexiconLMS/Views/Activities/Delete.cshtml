@@ -6,10 +6,28 @@
 
 <h2>Radera aktivitet</h2>
 
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/Module"><div class="node-title">Modul</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/Activities"><div class="node-title">Aktiviteter</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Radera aktivitet</div>
+        </li>
+    </ul>
+</div>
+
 <h3>Är du säker på att du vill radera aktiviteten?</h3>
 <div>
     <h4></h4>
     <hr />
+    @Html.HiddenFor(model => model.ModuleId)
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Type)
@@ -36,11 +54,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
+            @Html.DisplayNameFor(model => model.StartTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EndDate)
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
         </dd>
 
         <dt>
@@ -53,12 +79,15 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Radera" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+    <div class="form-actions no-color">
+        <input type="submit" value="Radera" class="btn btn-default" /> 
+        <div>
+             @Html.ActionLink("Tillbaka till modulens aktiviteter", "Index", new { moduleId = Model.ModuleId, activitiesId = Model.Id })
         </div>
+    </div>
     }
 </div>

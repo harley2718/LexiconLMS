@@ -4,7 +4,21 @@
     ViewBag.Title = "Redigera modul";
 }
 
-<h2>Redigera</h2>
+<h2>Redigera modul</h2>
+
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/Module"><div class="node-title">Modul</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Redigera modul</div>
+        </li>
+    </ul>
+</div>
 
 @using (Html.BeginForm())
 {
@@ -28,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Description, 5, 40, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input id="datetimepickerStart" name="StartDate" type="text" class="form-control">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +58,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input id="datetimepickerEnd"  name="EndDate" type="text" class="form-control">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,6 +80,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>jQuery('#datetimepickerStart').datetimepicker({timepicker: false});</script>
-    <script>jQuery('#datetimepickerEnd').datetimepicker({timepicker: false});</script>
 }

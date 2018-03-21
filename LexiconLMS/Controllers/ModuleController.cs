@@ -96,12 +96,10 @@ namespace LexiconLMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate,CourseId")] Module module)
         {
-            ViewBag.SuccessMsg = "";
             if (ModelState.IsValid)
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                //ViewBag.SuccessMsg = "Modulen har sparats";
                 return RedirectToAction("Index", "Course", new { id = module.Id });
             }
             return View(module);
@@ -132,7 +130,6 @@ namespace LexiconLMS.Controllers
             db.Modules.Remove(module);
             db.SaveChanges();
             return RedirectToAction("Index", "Module", new { courseId = cId });
-            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

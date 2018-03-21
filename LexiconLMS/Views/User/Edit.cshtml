@@ -1,10 +1,24 @@
 ﻿@model LexiconLMS.Models.ViewModels.UserViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Redigera";
 }
 
 <h2>Redigera användare</h2>
+
+<div class="bs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+        </li>
+        <li>
+            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+        </li>
+        <li class="current">
+            <div class="node-title">Redigera</div>
+        </li>
+    </ul>
+</div>
 
 
 @using (Html.BeginForm())
@@ -15,8 +29,7 @@
     <h4></h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(m => m.Password)
-
+    @*@Html.HiddenFor(model => model.Id)*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.UserFName, htmlAttributes: new { @class = "control-label col-md-2" })
