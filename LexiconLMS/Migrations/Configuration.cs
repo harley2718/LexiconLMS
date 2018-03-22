@@ -82,11 +82,11 @@ namespace LexiconLMS.Migrations
 
             context.SaveChanges();
 
-            ApplicationUser aUser;
-            aUser = userManager.FindByName(userName);
+#if false
+            ApplicationUser aUser = userManager.FindByName(userName);
             userManager.AddToRole(aUser.Id, Role.Student);
-
             context.SaveChanges();
+#endif
         }
 
         public static void _addUser   (ApplicationDbContext context,
@@ -99,7 +99,7 @@ namespace LexiconLMS.Migrations
                                        string surName = "en3 placeholder")
         {
             System.Console.WriteLine("HEJ");
-            string userName = email + Qqq.GetSpunk().ToString();
+            string userName = "user" + Qqq.GetSpunk().ToString() + "@d.t";
 
             if (context.Users.Any(u => u.UserName == userName))
             {
@@ -129,21 +129,20 @@ namespace LexiconLMS.Migrations
             }
 
             context.SaveChanges();
-
+#if false
             ApplicationUser aUser;
             aUser = userManager.FindByName(userName);
             userManager.AddToRole(aUser.Id, Role.Student);
-
             context.SaveChanges();
+#endif
         }
 
         protected override void Seed(ApplicationDbContext context)
-        // public override void Seed(ApplicationDbContext context)
         {
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            var roleNames = new[] { Role.Teacher, Role.Student };
+            var roleNames = new[] { Role.Teacher };  // Role.Student was removed.
             foreach (var roleName in roleNames)
             {
                 if (context.Roles.Any(r => r.Name == roleName)) continue;

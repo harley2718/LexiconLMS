@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,28 +12,27 @@ namespace LexiconLMS.Controllers
         // CM_200_G100
         public ActionResult Index()
         {
-            if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
-            {
+            if (!(User.Identity.IsAuthenticated)) {
+                // Not logged in.
+                return RedirectToAction("Login", "Account");
+            }
+
+            //
+            // We have only one explicit role, "teacher", for
+            // logged in users. If you are a legitimate user
+            // of the application and are not a teacher, then
+            // you are a student, with current design.
+            //
+            if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) {
                 // Teacher
                 return RedirectToAction("Index", "Course");
-            }
-            else if (User.IsInRole(LexiconLMS.Models.Role.Student))
-            {
+            } else {
                 // Student
-
-                // TODO: Change this when we have a controller to go to.
-                return RedirectToAction("Index", "Student");    // Experimental target for early demonstration.
+                return RedirectToAction("Index", "Student");
             }
-
-            // We do not want to see any Home view.
-            //   return View(); // If you hit here, then you will probably stay in signed out state.
-            //
-            // When you hit here, you typically want to login, because otherwise you are not
-            // able to do anything anyway.
-            //
-            return RedirectToAction("Login", "Account");
         }
 
+#if false
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -46,5 +46,6 @@ namespace LexiconLMS.Controllers
 
             return View();
         }
+#endif
     }
 }

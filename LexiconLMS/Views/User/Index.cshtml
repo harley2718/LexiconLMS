@@ -6,14 +6,12 @@
 
 <h2>
     Användare
-    @*@if (Model.TeacherListFlag)
+    @if (Model.TeacherListFlag)
     {
-        = Larare
+        <span>= Larare</span>
+    } else {
+        <span>= Elever</span>
     }
-    @if (Model.StudentListFlag)
-    {
-        = Elever
-    }*@
 </h2>
 
 <div class="bs">
@@ -59,32 +57,34 @@
 
     @foreach (var item in Model.Users)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserFName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserLName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserPhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseId)
-            </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserFName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserLName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseId)
+        </td>
 
-            <td>
-                @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Radera", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+      @if (Model.TeacherRoleFlag)
+      {
+        <td>
+            @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Radera", "Delete", new { id = item.Id })
+        </td>
+      }
+    </tr>
     }
-
 </table>
