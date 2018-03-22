@@ -200,13 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803211358335_aftermerge.cs" />
-    <Compile Include="Migrations\201803211358335_aftermerge.Designer.cs">
-      <DependentUpon>201803211358335_aftermerge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803220945010_navprops.cs" />
-    <Compile Include="Migrations\201803220945010_navprops.Designer.cs">
-      <DependentUpon>201803220945010_navprops.cs</DependentUpon>
+    <Compile Include="Migrations\201803221504434_newdb.cs" />
+    <Compile Include="Migrations\201803221504434_newdb.Designer.cs">
+      <DependentUpon>201803221504434_newdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -319,11 +315,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803211358335_aftermerge.resx">
-      <DependentUpon>201803211358335_aftermerge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803220945010_navprops.resx">
-      <DependentUpon>201803220945010_navprops.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803221504434_newdb.resx">
+      <DependentUpon>201803221504434_newdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

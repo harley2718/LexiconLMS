@@ -10,7 +10,7 @@ namespace LexiconLMS.Models
     public class Module // : IValidatableObject
     {
         public int Id { get; set; }
-
+        public int ActivityId { get; set; } 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(50, ErrorMessage = "Fältet får inte innehålla mer än 50 tecken.")]
         [DisplayName("Namn")]
