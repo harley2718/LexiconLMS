@@ -6,14 +6,12 @@
 
 <h2>
     Användare
-    @*@if (Model.TeacherListFlag)
+    @if (Model.TeacherListFlag)
     {
-        = Larare
+        <span>= Larare</span>
+    } else {
+        <span>= Elever</span>
     }
-    @if (Model.StudentListFlag)
-    {
-        = Elever
-    }*@
 </h2>
 
 <div class="bs">
@@ -79,7 +77,7 @@
             @Html.DisplayFor(modelItem => item.CourseId)
         </td>
 
-      @if (Model.TeacherListFlag)
+      @if (Model.TeacherRoleFlag)
       {
         <td>
             @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
