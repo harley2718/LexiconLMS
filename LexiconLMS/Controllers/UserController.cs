@@ -65,6 +65,25 @@ namespace LexiconLMS.Controllers
 #endif
             };
 
+            var courses = 
+                db.Courses
+                .Where(omega => (omega.Id == courseId))
+                .Select(c => new Course
+                {
+                    Name = c.Name
+                });
+
+#if false
+            var courseList = courses.ToList();
+
+            if (courseList.Count == 1) {
+                model.CourseName = courseList[0].Name;
+            } else 
+#endif
+            {
+                model.CourseName = "Missing course name !!!";
+            }
+
             return View(model);
         }
 

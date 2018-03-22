@@ -9,6 +9,7 @@ namespace LexiconLMS.Models.ViewModels
     {
         public IEnumerable<UserViewModel> Users { get; set; }
         public int                        CourseId             { get; set; }
+        public string                     CourseName           { get; set; }
         public bool                       TeacherListFlag      { get; set; }
         public bool                       TeacherRoleFlag      { get; set; }
 #if false

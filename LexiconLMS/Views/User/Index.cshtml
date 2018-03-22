@@ -9,7 +9,9 @@
     @if (Model.TeacherListFlag)
     {
         <span>= Larare</span>
-    } else {
+    }
+    else
+    {
         <span>= Elever</span>
     }
 </h2>
@@ -31,6 +33,10 @@
 <p>
     @*@Html.ActionLink("Skapa ny användare", "Create")*@
     @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, null)
+</p>
+<p>
+    Kursnamn:
+        @*@model.CourseName*@  Skriv ut kursnamn h&auml;r !!!
 </p>
 <table class="table">
     <tr>
@@ -57,34 +63,34 @@
 
     @foreach (var item in Model.Users)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserFName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserLName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserPhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseId)
-        </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserFName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserLName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
 
-      @if (Model.TeacherRoleFlag)
-      {
-        <td>
-            @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Radera", "Delete", new { id = item.Id })
-        </td>
-      }
-    </tr>
+            @if (Model.TeacherRoleFlag)
+            {
+                <td>
+                    @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Radera", "Delete", new { id = item.Id })
+                </td>
+            }
+        </tr>
     }
 </table>
