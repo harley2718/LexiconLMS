@@ -23,6 +23,10 @@ namespace LexiconLMS.Controllers
                 ViewBag.moduleId = moduleId.Value;
             }
 
+                //var courses = db.Modules.Include(c => c.Activities);
+                //return View(courses.ToList());
+
+
             if (courseId.HasValue)
             {
                 List<Module> modules =

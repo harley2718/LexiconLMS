@@ -21,12 +21,22 @@
             <div class="navbar-collapse collapse">
                 @if (Request.IsAuthenticated)
                 {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
-                        @*<li>@Html.ActionLink("Lärare", "Index", "User")</li>*@
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                }
+                    if (User.IsInRole("Lärare"))
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
+                            <li>@Html.ActionLink("Lärare", "Index", "User")</li>
+                        </ul>
+                    }
+                    if (User.IsInRole("Elev"))
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Kurs", "Index", "Course")</li>
+                            <li>@Html.ActionLink("Kurskamrater", "Index", "User")</li>
+                        </ul>
+                    }
+            @Html.Partial("_LoginPartial")
+}
             </div>
         </div>
     </div>

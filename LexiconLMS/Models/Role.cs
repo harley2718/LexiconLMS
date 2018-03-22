@@ -7,7 +7,7 @@ namespace LexiconLMS.Models
 {
     public static class Role
     {
-        public const string Teacher = "Lärare";
-        public const string Student = "Elev";
+        public const string Teacher = "Teacher";
+        public const string Student = "Student";
     }
 }

@@ -33,6 +33,12 @@ namespace LexiconLMS.Models
 
         public int CourseId { get; set; }
 
+        public virtual ICollection<Activity> Activities { get; set; }
+
+
+
+
+
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //{
