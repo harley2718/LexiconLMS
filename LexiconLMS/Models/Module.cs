@@ -10,7 +10,7 @@ namespace LexiconLMS.Models
     public class Module // : IValidatableObject
     {
         public int Id { get; set; }
-
+        public int ActivityId { get; set; } 
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [StringLength(50, ErrorMessage = "Fältet får inte innehålla mer än 50 tecken.")]
         [DisplayName("Namn")]
@@ -32,6 +32,12 @@ namespace LexiconLMS.Models
         public string Description { get; set; }
 
         public int CourseId { get; set; }
+
+        public virtual ICollection<Activity> Activities { get; set; }
+
+
+
+
 
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

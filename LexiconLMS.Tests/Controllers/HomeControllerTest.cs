@@ -32,10 +32,13 @@ namespace LexiconLMS.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
+#if false
+            // Contact method has been removed.
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
             Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+#endif
         }
 
         [TestMethod]
@@ -45,10 +48,13 @@ namespace LexiconLMS.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
+#if false
+            // Contact method has been removed.
             ViewResult result = controller.Contact() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
+#endif
         }
     }
 }

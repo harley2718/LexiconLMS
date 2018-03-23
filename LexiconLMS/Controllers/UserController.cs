@@ -31,9 +31,9 @@ namespace LexiconLMS.Controllers
         {
             int  courseId        = (id != null) ? id.Value : 0;
             bool teacherListFlag = (courseId == 0);
-            bool studentListFlag = (courseId != 0);
+#if false
             bool teacherRoleFlag = User.IsInRole(Role.Teacher);
-            bool studentRoleFlag = User.IsInRole(Role.Student);
+#endif
 
             var users =
                 db.Users
@@ -56,10 +56,33 @@ namespace LexiconLMS.Controllers
                 DisplayNameContainer = displayNameContainer,
                 CourseId             = courseId,
                 TeacherListFlag      = teacherListFlag,
+#if false
                 StudentListFlag      = studentListFlag,
+#endif
+#if false
                 TeacherRoleFlag      = teacherRoleFlag,
                 StudentRoleFlag      = studentRoleFlag
+#endif
             };
+
+            var courses = 
+                db.Courses
+                .Where(omega => (omega.Id == courseId))
+                .Select(c => new Course
+                {
+                    Name = c.Name
+                });
+
+#if false
+            var courseList = courses.ToList();
+
+            if (courseList.Count == 1) {
+                model.CourseName = courseList[0].Name;
+            } else 
+#endif
+            {
+                model.CourseName = "Missing course name !!!";
+            }
 
             return View(model);
         }
@@ -85,11 +108,12 @@ namespace LexiconLMS.Controllers
 
             if (courseId == null) {
                 // Prepare creation of teacher Teacher record.
-                model.IsTeacher  = true;
+                // model.CourseId is already initialized to 0.
+                // model.IsTeacher  = true;
+                // model.IsTeacher is replaced by (mode.CourseId == 0).
             }
             else {
                 // Prepare creation of Student record.
-                model.IsStudent  = true;
                 model.CourseId   = courseId.Value;
                 // TODO get a correct Course Name from database.
                 model.CourseName = "kursId_" + model.CourseId.ToString();  // Quick and dirty replacement for real CourseName.
@@ -119,12 +143,12 @@ namespace LexiconLMS.Controllers
                 {
                     throw new Exception(string.Join("\n", result.Errors));
                 }
+#if false
                 ApplicationUser aUser;
                 aUser = userManager.FindByName(user.UserName);
                 userManager.AddToRole(aUser.Id, Role.Student);
-
-                // db.SaveChanges();  ???
-
+                db.SaveChanges();
+#endif
                 return RedirectToAction("Index", "Course", new { id = user.Id });
             }
 

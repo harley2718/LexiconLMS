@@ -20,11 +20,21 @@
             </div>
             <div class="navbar-collapse collapse">
                 @if (Request.IsAuthenticated)
+                { 
+                if (User.IsInRole("Teacher"))
                 {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
-                        @*<li>@Html.ActionLink("Lärare", "Index", "User")</li>*@
-                    </ul>
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
+                            <li>@Html.ActionLink("Lärare", "Index", "User")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Kurs", "Index", "Course")</li>
+                            <li>@Html.ActionLink("Kurskamrater", "Index", "User")</li>
+                        </ul>
+                    }
                     @Html.Partial("_LoginPartial")
                 }
             </div>
