@@ -31,9 +31,6 @@ namespace LexiconLMS.Controllers
         {
             int  courseId        = (id != null) ? id.Value : 0;
             bool teacherListFlag = (courseId == 0);
-#if false
-            bool teacherRoleFlag = User.IsInRole(Role.Teacher);
-#endif
 
             var users =
                 db.Users
@@ -56,31 +53,15 @@ namespace LexiconLMS.Controllers
                 DisplayNameContainer = displayNameContainer,
                 CourseId             = courseId,
                 TeacherListFlag      = teacherListFlag,
-#if false
-                StudentListFlag      = studentListFlag,
-#endif
-#if false
-                TeacherRoleFlag      = teacherRoleFlag,
-                StudentRoleFlag      = studentRoleFlag
-#endif
             };
 
-            var courses = 
+            var course =
                 db.Courses
-                .Where(omega => (omega.Id == courseId))
-                .Select(c => new Course
-                {
-                    Name = c.Name
-                });
+                .FirstOrDefault(c => c.Id == courseId);
 
-#if false
-            var courseList = courses.ToList();
-
-            if (courseList.Count == 1) {
-                model.CourseName = courseList[0].Name;
-            } else 
-#endif
-            {
+            if (course != null) {
+                model.CourseName = course.Name;
+            } else {
                 model.CourseName = "Missing course name !!!";
             }
 
@@ -91,7 +72,7 @@ namespace LexiconLMS.Controllers
         [Authorize]
         public ActionResult Create(int? id)
         {
-            var courseId = id;
+            var courseId = (id == null) ? 0 : id.Value;
 
             // This controller method represent two different cases:
             //   If courseId is null, then you want a view for adding a teacher,
@@ -106,15 +87,9 @@ namespace LexiconLMS.Controllers
             model.UserLName       = "";
             model.UserPhoneNumber = "";
 
-            if (courseId == null) {
-                // Prepare creation of teacher Teacher record.
-                // model.CourseId is already initialized to 0.
-                // model.IsTeacher  = true;
-                // model.IsTeacher is replaced by (mode.CourseId == 0).
-            }
-            else {
+            if (courseId != 0) {
                 // Prepare creation of Student record.
-                model.CourseId   = courseId.Value;
+                model.CourseId = courseId;
                 // TODO get a correct Course Name from database.
                 model.CourseName = "kursId_" + model.CourseId.ToString();  // Quick and dirty replacement for real CourseName.
             }
@@ -136,20 +111,24 @@ namespace LexiconLMS.Controllers
                 var userStore = new UserStore<ApplicationUser>(db);
                 var userManager = new UserManager<ApplicationUser>(userStore);
 
-                var userRef2 = new ApplicationUser { CourseId = user.CourseId, UserName = user.UserName, Email = user.UserEmail, FirstName = user.UserFName, LastName = user.UserLName };
+                ApplicationUser userRef2;
+
+                if (user.CourseId != 0) {
+                    // student
+                    userRef2 = new ApplicationUser { CourseId = user.CourseId, UserName = user.UserName, Email = user.UserEmail, FirstName = user.UserFName, LastName = user.UserLName, PhoneNumber = user.UserPhoneNumber };
+                } else {
+                    // teacher
+                    userRef2 = new ApplicationUser {                           UserName = user.UserName, Email = user.UserEmail, FirstName = user.UserFName, LastName = user.UserLName, PhoneNumber = user.UserPhoneNumber };
+                }
                 var result = userManager.Create(userRef2, user.Password);
 
                 if (!result.Succeeded)
                 {
                     throw new Exception(string.Join("\n", result.Errors));
                 }
-#if false
-                ApplicationUser aUser;
-                aUser = userManager.FindByName(user.UserName);
-                userManager.AddToRole(aUser.Id, Role.Student);
-                db.SaveChanges();
-#endif
-                return RedirectToAction("Index", "Course", new { id = user.Id });
+
+                // return RedirectToAction("Index", "Course", new { id = user.CourseId });
+                return RedirectToAction("Index", "User", new { id = user.CourseId });
             }
 
             return View(user);
@@ -211,7 +190,7 @@ namespace LexiconLMS.Controllers
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "User", new { id = user.CourseId });
             }
             return View(model);
         }

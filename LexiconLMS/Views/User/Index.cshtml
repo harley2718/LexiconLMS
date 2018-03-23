@@ -31,12 +31,27 @@
 </div>
 
 <p>
-    @*@Html.ActionLink("Skapa ny användare", "Create")*@
-    @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, null)
+    @if (Model.TeacherListFlag)
+    {
+        <span>
+            @Html.ActionLink("Lägg till lärare", "Create", "User", new { id = Model.CourseId }, null)
+        </span>
+    }
+    else
+    {
+        <span>
+            @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, null)
+        </span>
+    }
 </p>
 <p>
-    Kursnamn:
-        @*@model.CourseName*@  Skriv ut kursnamn h&auml;r !!!
+    @if (! Model.TeacherListFlag)
+    {
+    <span>
+        Kursnamn:
+        @Model.CourseName
+    </span>
+    }
 </p>
 <table class="table">
     <tr>
@@ -83,7 +98,7 @@
                 @Html.DisplayFor(modelItem => item.CourseId)
             </td>
 
-            @if (Model.TeacherRoleFlag)
+            @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
             {
                 <td>
                     @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
