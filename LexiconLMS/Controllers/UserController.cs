@@ -19,29 +19,25 @@ namespace LexiconLMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //// GET: User
-        //[Authorize]
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
+        // GET: User
         // CM_240_G100
+        [Authorize]
         public ActionResult Index(int? id)
         {
-            int  courseId        = (id != null) ? id.Value : 0;
+            int courseId = (id != null) ? id.Value : 0;
             bool teacherListFlag = (courseId == 0);
 
             var users =
                 db.Users
                 .Where(omega => (((omega.CourseId != null) ? omega.CourseId.Value : 0) == courseId))
-                .Select(u => new UserViewModel {
-                    Id              = u.Id,
-                    CourseId        = courseId,
-                    UserFName       = u.FirstName,
-                    UserLName       = u.LastName,
-                    UserEmail       = u.Email,
-                    UserName        = u.UserName,
+                .Select(u => new UserViewModel
+                {
+                    Id = u.Id,
+                    CourseId = courseId,
+                    UserFName = u.FirstName,
+                    UserLName = u.LastName,
+                    UserEmail = u.Email,
+                    UserName = u.UserName,
                     UserPhoneNumber = u.PhoneNumber
                 });
 
@@ -49,19 +45,22 @@ namespace LexiconLMS.Controllers
 
             var model = new UserViewModelWithCourseId
             {
-                Users                = users,
+                Users = users,
                 DisplayNameContainer = displayNameContainer,
-                CourseId             = courseId,
-                TeacherListFlag      = teacherListFlag,
+                CourseId = courseId,
+                TeacherListFlag = teacherListFlag,
             };
 
             var course =
                 db.Courses
                 .FirstOrDefault(c => c.Id == courseId);
 
-            if (course != null) {
+            if (course != null)
+            {
                 model.CourseName = course.Name;
-            } else {
+            }
+            else
+            {
                 model.CourseName = "Missing course name !!!";
             }
 
@@ -194,5 +193,118 @@ namespace LexiconLMS.Controllers
             }
             return View(model);
         }
+
+        // GET: Activities/Details/5
+        public ActionResult Details(string id)
+        {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var user = userManager.FindById(id);
+
+            var submodel = new UserViewModel
+            {
+                Id = user.Id,
+                CourseId = (user.CourseId != null) ? user.CourseId.Value : 0,
+                UserFName = user.FirstName,
+                UserLName = user.LastName,
+                UserEmail = user.Email,
+                UserName = user.UserName,
+                UserPhoneNumber = user.PhoneNumber
+            };
+
+            var course = db.Courses.FirstOrDefault(c => c.Id == user.CourseId);
+
+            var model = new UserViewModelForDelete
+            {
+                User = submodel,
+                CourseName = (course != null) ? course.Name : "-"
+            };
+
+            return View(model);
+        }
+
+        // GET: Activities/Delete/5
+        public ActionResult Delete(string id)
+        {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var user = userManager.FindById(id);
+
+            var submodel = new UserViewModel
+            {
+                Id = user.Id,
+                CourseId = (user.CourseId != null) ? user.CourseId.Value : 0,
+                UserFName = user.FirstName,
+                UserLName = user.LastName,
+                UserEmail = user.Email,
+                UserName = user.UserName,
+                UserPhoneNumber = user.PhoneNumber
+            };
+
+            var course = db.Courses.FirstOrDefault(c => c.Id == user.CourseId);
+
+            var model = new UserViewModelForDelete
+            {
+                User = submodel,
+                CourseName = (course != null) ? course.Name : "-"
+            };
+
+            return View(model);
+        }
+
+        // POST: /Users/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var user         = userManager.FindById(id);
+                var logins       = user.Logins;
+                var rolesForUser = userManager.GetRoles(id);
+
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    foreach (var login in logins.ToList())
+                    {
+                        userManager.RemoveLogin(login.UserId, new UserLoginInfo(login.LoginProvider, login.ProviderKey));
+                    }
+
+#if false
+                    //
+                    // There is already cascade delete for the rules.
+                    //
+                    if (rolesForUser.Count > 0)         // This line had compilation error.
+                    {
+                        foreach (var item in rolesForUser.ToList())
+                        {
+                            // item should be the name of the role
+                            var result = userManager.RemoveFromRole(user.Id, item);
+                        }
+                    }
+#endif
+
+                    userManager.Delete(user);
+                    transaction.Commit();
+                }
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
     }
 }
