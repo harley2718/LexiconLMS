@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LexiconLMS.Models;
+using Microsoft.AspNet.Identity;
+
 
 namespace LexiconLMS.Controllers
 {
@@ -59,7 +61,7 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,Content")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +93,7 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,Content")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -135,6 +137,15 @@ namespace LexiconLMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult StudentStartPage()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
+            Course course = db.Courses.Find(user.CourseId);
+
+            return View(course);
         }
     }
 }

@@ -7,13 +7,13 @@ namespace LexiconLMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class newdb : IMigrationMetadata
+    public sealed partial class div : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newdb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(div));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803221504434_newdb"; }
+            get { return "201803251736320_div"; }
         }
         
         string IMigrationMetadata.Source

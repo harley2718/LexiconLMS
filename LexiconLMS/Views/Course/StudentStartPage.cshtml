@@ -1,15 +1,15 @@
 ﻿@model LexiconLMS.Models.Course
 
 @{
-    ViewBag.Title = "Detaljer";
+    ViewBag.Title = "Kurssida";
 }
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
     <h4></h4>
     <hr />
-    @*@Html.HiddenFor(model => model.ModuleId)*@
     <dl class="container-fluid">
-
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -27,25 +27,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            
         </dt>
 
-        <dd style="border:dashed;border-color:lightslategray">
+        <dd>
             @Html.Raw(Model.Content)
         </dd>
 
     </dl>
-    <div class="container-fluid">
-        <div>@Html.ActionLink("Redigera", "Edit", new { id = Model.Id })</div>
-        <div>@*@Html.ActionLink("Tillbaka till modulens aktiviteter", "Index", new { moduleId = Model.ModuleId, activitiesId = Model.Id })*@</div>
-    </div>  
 </div>
-
-
-
-
-
-
-
-
 

@@ -200,9 +200,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803221535197_hallongurka.cs" />
-    <Compile Include="Migrations\201803221535197_hallongurka.Designer.cs">
-      <DependentUpon>201803221535197_hallongurka.cs</DependentUpon>
+    <Compile Include="Migrations\201803251401281_summernote.cs" />
+    <Compile Include="Migrations\201803251401281_summernote.Designer.cs">
+      <DependentUpon>201803251401281_summernote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803251736320_div.cs" />
+    <Compile Include="Migrations\201803251736320_div.Designer.cs">
+      <DependentUpon>201803251736320_div.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -222,7 +226,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,10 +237,10 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\calendar.js" />
+    <Content Include="Scripts\home-index.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -245,6 +248,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\script-custom-editor.js" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
@@ -298,6 +302,8 @@
     <Content Include="Views\Activities\Details.cshtml" />
     <Content Include="Views\Activities\Edit.cshtml" />
     <Content Include="Views\Activities\Index.cshtml" />
+    <Content Include="Views\Course\Details - Copy.cshtml" />
+    <Content Include="Views\Course\StudentStartPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,8 +322,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803221535197_hallongurka.resx">
-      <DependentUpon>201803221535197_hallongurka.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803251401281_summernote.resx">
+      <DependentUpon>201803251401281_summernote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803251736320_div.resx">
+      <DependentUpon>201803251736320_div.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

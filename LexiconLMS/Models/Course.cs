@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace LexiconLMS.Models
 {
@@ -16,16 +17,20 @@ namespace LexiconLMS.Models
         [DisplayName("Kursnamn")]
         public string Name { get; set; }
 
-        [DisplayName("Beskrivning")]
-        public string Description { get; set; }
-
         [DisplayName("Startdatum")]
         [Required(ErrorMessage = "Fältet får inte vara tomt.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
+        [AllowHtml]
+        [Display(Name = "Beskrivning")]
+        public string Content { get; set; }
+
+        public int ModulesId { get; set; }
+
         public virtual ICollection<ApplicationUser> Students { get; set; }
         public virtual ICollection<Module> Modules { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace LexiconLMS.Models
 
         public virtual ICollection<Activity> Activities { get; set; }
 
-
+        public virtual Course Course { get; set; }
 
 
 

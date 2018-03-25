@@ -6,6 +6,14 @@
     <title>@ViewBag.Title - Lexicon LMS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Style", required: false)
+    @RenderSection("Head", required: false)
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <!-- include summernote css/js -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,19 +28,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 @if (Request.IsAuthenticated)
-                { 
-                if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
                 {
+                    if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+                    {
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Kurser", "Index", "Course")</li>
-                            <li>@Html.ActionLink("Lärare", "Index", "User", new { id = 0 },null)</li>
+                            <li>@Html.ActionLink("Lärare", "Index", "User", new { id = 0 }, null)</li>
                         </ul>
                     }
                     else
                     {
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Kurs", "Index", "Course")</li>
-                            <li>@Html.ActionLink("Kurskamrater", "Index", "User")</li>
+                            <li>@Html.ActionLink("Kurs", "StudentStartPage", "Course")</li>
+                            <li>@Html.ActionLink("Moduler", "Index", "Module")</li>
+                            <li>@Html.ActionLink("Kursdeltagare", "Index", "User")</li>
                         </ul>
                     }
                     @Html.Partial("_LoginPartial")
@@ -44,12 +53,17 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Lexicon LMS</p>
+            @*<p>&copy; @DateTime.Now.Year - Lexicon LMS</p>*@
         </footer>
     </div>
-
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+

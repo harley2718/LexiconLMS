@@ -50,5 +50,9 @@ namespace LexiconLMS.Models
             Tenta = 6,
             Annat = 7
         }
+
+        public virtual Module Module { get; set; }
+        public virtual Course Course { get; set; }
+
     }
 }

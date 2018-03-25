@@ -3,7 +3,7 @@ namespace LexiconLMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newdb : DbMigration
+    public partial class summernote : DbMigration
     {
         public override void Up()
         {
@@ -32,6 +32,7 @@ namespace LexiconLMS.Migrations
                         Name = c.String(nullable: false, maxLength: 50),
                         Description = c.String(),
                         StartDate = c.DateTime(nullable: false),
+                        Content = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -79,14 +79,15 @@ namespace LexiconLMS.Controllers
             //   a student to that course.
             var model = new LexiconLMS.Models.ViewModels.UserViewModel();
 
-            model.UserName        = "";
-            model.Password        = "";
-            model.UserEmail       = "";
-            model.UserFName       = "";
-            model.UserLName       = "";
+            model.UserName = "";
+            model.Password = "";
+            model.UserEmail = "";
+            model.UserFName = "";
+            model.UserLName = "";
             model.UserPhoneNumber = "";
 
-            if (courseId != 0) {
+            if (courseId != 0)
+            {
                 // Prepare creation of Student record.
                 model.CourseId = courseId;
                 // TODO get a correct Course Name from database.
@@ -112,12 +113,15 @@ namespace LexiconLMS.Controllers
 
                 ApplicationUser userRef2;
 
-                if (user.CourseId != 0) {
+                if (user.CourseId != 0)
+                {
                     // student
                     userRef2 = new ApplicationUser { CourseId = user.CourseId, UserName = user.UserName, Email = user.UserEmail, FirstName = user.UserFName, LastName = user.UserLName, PhoneNumber = user.UserPhoneNumber };
-                } else {
+                }
+                else
+                {
                     // teacher
-                    userRef2 = new ApplicationUser {                           UserName = user.UserName, Email = user.UserEmail, FirstName = user.UserFName, LastName = user.UserLName, PhoneNumber = user.UserPhoneNumber };
+                    userRef2 = new ApplicationUser { UserName = user.UserName, Email = user.UserEmail, FirstName = user.UserFName, LastName = user.UserLName, PhoneNumber = user.UserPhoneNumber };
                 }
                 var result = userManager.Create(userRef2, user.Password);
 
@@ -142,19 +146,21 @@ namespace LexiconLMS.Controllers
             var users = db.Users
                 .Where(omega => (omega.Id == id))
                 .Select(
-                    u => new UserViewModel {
-                        Id              = u.Id,
-                        CourseId        = (u.CourseId != null) ? (u.CourseId.Value) : 0,
-                        UserFName       = u.FirstName,
-                        UserLName       = u.LastName,
-                        UserEmail       = u.Email,
-                        UserName        = u.UserName,
-                        Password        = "not being updated",
+                    u => new UserViewModel
+                    {
+                        Id = u.Id,
+                        CourseId = (u.CourseId != null) ? (u.CourseId.Value) : 0,
+                        UserFName = u.FirstName,
+                        UserLName = u.LastName,
+                        UserEmail = u.Email,
+                        UserName = u.UserName,
+                        Password = "not being updated",
                         UserPhoneNumber = u.PhoneNumber
                     }
                 ).ToList();
 
-            if (users.Count != 1) {
+            if (users.Count != 1)
+            {
                 //
                 // TODO: Implement better error handling if user id not [longer] valid.
                 //
@@ -180,10 +186,10 @@ namespace LexiconLMS.Controllers
             {
                 var user = db.Users.Find(model.Id);
 
-                user.FirstName   = model.UserFName;
-                user.LastName    = model.UserLName;
-                user.UserName    = model.UserName;
-                user.Email       = model.UserEmail;
+                user.FirstName = model.UserFName;
+                user.LastName = model.UserLName;
+                user.UserName = model.UserName;
+                user.Email = model.UserEmail;
                 user.PhoneNumber = model.UserPhoneNumber;
 
                 db.Entry(user).State = EntityState.Modified;
@@ -269,8 +275,8 @@ namespace LexiconLMS.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                var user         = userManager.FindById(id);
-                var logins       = user.Logins;
+                var user = userManager.FindById(id);
+                var logins = user.Logins;
                 var rolesForUser = userManager.GetRoles(id);
 
                 using (var transaction = db.Database.BeginTransaction())
@@ -304,6 +310,7 @@ namespace LexiconLMS.Controllers
             {
                 return View();
             }
+
         }
 
     }

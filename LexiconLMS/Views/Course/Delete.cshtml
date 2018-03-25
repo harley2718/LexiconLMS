@@ -31,11 +31,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Content)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.Raw(Model.Content)
         </dd>
 
         <dt>
