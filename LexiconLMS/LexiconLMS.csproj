@@ -200,13 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803251401281_summernote.cs" />
-    <Compile Include="Migrations\201803251401281_summernote.Designer.cs">
-      <DependentUpon>201803251401281_summernote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803251736320_div.cs" />
-    <Compile Include="Migrations\201803251736320_div.Designer.cs">
-      <DependentUpon>201803251736320_div.cs</DependentUpon>
+    <Compile Include="Migrations\201803260845099_layout.cs" />
+    <Compile Include="Migrations\201803260845099_layout.Designer.cs">
+      <DependentUpon>201803260845099_layout.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -322,11 +318,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803251401281_summernote.resx">
-      <DependentUpon>201803251401281_summernote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803251736320_div.resx">
-      <DependentUpon>201803251736320_div.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803260845099_layout.resx">
+      <DependentUpon>201803260845099_layout.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

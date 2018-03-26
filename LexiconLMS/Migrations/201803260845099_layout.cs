@@ -3,7 +3,7 @@ namespace LexiconLMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class summernote : DbMigration
+    public partial class layout : DbMigration
     {
         public override void Up()
         {
@@ -19,10 +19,13 @@ namespace LexiconLMS.Migrations
                         StartTime = c.DateTime(nullable: false),
                         EndTime = c.DateTime(nullable: false),
                         Description = c.String(),
+                        Course_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Courses", t => t.Course_Id)
                 .ForeignKey("dbo.Modules", t => t.ModuleId, cascadeDelete: true)
-                .Index(t => t.ModuleId);
+                .Index(t => t.ModuleId)
+                .Index(t => t.Course_Id);
             
             CreateTable(
                 "dbo.Courses",
@@ -30,9 +33,9 @@ namespace LexiconLMS.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
-                        Description = c.String(),
                         StartDate = c.DateTime(nullable: false),
                         Content = c.String(),
+                        ModulesId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -136,6 +139,7 @@ namespace LexiconLMS.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Modules", "CourseId", "dbo.Courses");
             DropForeignKey("dbo.Activities", "ModuleId", "dbo.Modules");
+            DropForeignKey("dbo.Activities", "Course_Id", "dbo.Courses");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -144,6 +148,7 @@ namespace LexiconLMS.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUsers", new[] { "CourseId" });
             DropIndex("dbo.Modules", new[] { "CourseId" });
+            DropIndex("dbo.Activities", new[] { "Course_Id" });
             DropIndex("dbo.Activities", new[] { "ModuleId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");

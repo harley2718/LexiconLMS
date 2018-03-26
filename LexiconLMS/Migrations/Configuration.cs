@@ -245,10 +245,10 @@ namespace LexiconLMS.Migrations
             //activities
             context.Activity.AddOrUpdate(
                 c => c.Name,
-                new Activity { ModuleId = 3, Type = Activity.ActivityType.Tenta, Name = "Prov", StartDate = DateTime.Parse("2018-04-01"), StartTime = DateTime.Parse("2018-04-01 15:30:00"), EndTime = DateTime.Parse("2018-04-01 17:30:00"), Description = "Årets första test" },
-                new Activity { ModuleId = 3, Type = Activity.ActivityType.Annat, Name = "Kul", StartDate = DateTime.Parse("2018-04-02"), StartTime = DateTime.Parse("2018-04-02 12:30:00"), EndTime = DateTime.Parse("2018-04-02 13:30:00"), Description = "Vi ska hitta på något roligt!" },
-                new Activity { ModuleId = 3, Type = Activity.ActivityType.Föreläsning, Name = "Information", StartDate = DateTime.Parse("2018-04-04"), StartTime = DateTime.Parse("2018-04-04 09:00:00"), EndTime = DateTime.Parse("2018-04-04 09:30:00"), Description = "Information från rektor" },
-                new Activity { ModuleId = 3, Type = Activity.ActivityType.Annat, Name = "Redovisning", StartDate = DateTime.Parse("2018-04-06"), StartTime = DateTime.Parse("2018-04-06 09:30:00"), EndTime = DateTime.Parse("2018-04-06 17:30:00"), Description = "Redovisning" });
+                new Activity { ModuleId = 1, Type = Activity.ActivityType.Tenta, Name = "Prov", StartDate = DateTime.Parse("2018-04-01"), StartTime = DateTime.Parse("2018-04-01 15:30:00"), EndTime = DateTime.Parse("2018-04-01 17:30:00"), Description = "Årets första test" },
+                new Activity { ModuleId = 1, Type = Activity.ActivityType.Annat, Name = "Kul", StartDate = DateTime.Parse("2018-04-02"), StartTime = DateTime.Parse("2018-04-02 12:30:00"), EndTime = DateTime.Parse("2018-04-02 13:30:00"), Description = "Vi ska hitta på något roligt!" },
+                new Activity { ModuleId = 1, Type = Activity.ActivityType.Föreläsning, Name = "Information", StartDate = DateTime.Parse("2018-04-04"), StartTime = DateTime.Parse("2018-04-04 09:00:00"), EndTime = DateTime.Parse("2018-04-04 09:30:00"), Description = "Information från rektor" },
+                new Activity { ModuleId = 1, Type = Activity.ActivityType.Annat, Name = "Redovisning", StartDate = DateTime.Parse("2018-04-06"), StartTime = DateTime.Parse("2018-04-06 09:30:00"), EndTime = DateTime.Parse("2018-04-06 17:30:00"), Description = "Redovisning" });
 
             context.SaveChanges();
         }
