@@ -48,7 +48,7 @@
 
                     <td style="vertical-align: middle;font-size: 14px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" :>
                         @Html.DisplayFor(modelItem => item.Name)
-                        @if (item.Id == ViewBag.moduleId){<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
+                        @if (item.Id ==  ViewBag.CurrentCourse){<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
                     </td>
                     <td style="vertical-align: middle;font-size: 14px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-left:30px">
                         @Html.DisplayFor(modelItem => item.StartDate)
