@@ -191,6 +191,51 @@ namespace LexiconLMS.Migrations
             return true;
         }
 
+        public static void UserSeedSub(
+            ApplicationDbContext ctx,
+            UserManager<ApplicationUser> uMan
+        ) {
+            _AddT(ctx, uMan, f: "Thomas", e: "Thomasson", u: "thomas.teacher@lexiconlms.se", p: "teacher");
+
+            _AddT(ctx, uMan, f: "Klas", e: "Bengtsson", u: "kb@gmail.com", p: "hemLigt123");
+            _AddT(ctx, uMan, f: "Per", e: "Sundman", u: "per@gmail.com", p: "hemLigt123");
+            _AddT(ctx, uMan, f: "John", e: "Cleese", u: "jp@hotmail.com", p: "hemLigt123");
+            _AddT(ctx, uMan, f: "Fröken", e: "Uhr", ph: "+46890510");
+
+            _AddS(ctx, uMan, f: "Eilert", e: "Lingonsson", k: 3, u: "eillin@gmail.com", p: "Abc-123");
+            _AddS(ctx, uMan, f: "Evert", e: "Matsson", k: 3, u: "evert@gmail.com");
+            _AddS(ctx, uMan, f: "Erik", e: "Nilsson", k: 3, u: "erikn@gmail.com");
+            _AddS(ctx, uMan, f: "Erland", e: "Gustavssom", k: 3, u: "eg@eg.eu", ph: "+4631313131");
+            _AddS(ctx, uMan, f: "Gunnar", e: "Hansson", k: 3, u: "gh@gh.kz");
+
+            var fList = new List<string>();
+            var eList = new List<string>();
+
+            fList.Add("Adam");
+            fList.Add("Bertil");
+            fList.Add("Cesar");
+            fList.Add("David");
+            fList.Add("Erik");
+            fList.Add("Filip");
+            fList.Add("Gustav");
+            fList.Add("Helge");
+
+            eList.Add("Karlsson");
+            eList.Add("Larsson");
+            eList.Add("Pettersson");
+            eList.Add("Andersson");
+            eList.Add("Ohlsson");
+            eList.Add("Stridh");
+            eList.Add("Jansson");
+            eList.Add("Johansson");
+
+            foreach (string f in fList) {
+                foreach (string e in eList) {
+                    _AddS(ctx, uMan, f: f, e: e);
+                }
+            }
+        }
+
         public static void Seed2(ApplicationDbContext context = null)
         {
             if (context == null)
@@ -232,52 +277,10 @@ namespace LexiconLMS.Migrations
             context.SaveChanges();
 
             var userStore = new UserStore<ApplicationUser>(context);
-            // var userManager = new UserManager<ApplicationUser>(userStore);
             var uMan = new UserManager<ApplicationUser>(userStore);
             var ctx = context;
 
-            _AddT(ctx, uMan, f: "Thomas",   e: "Thomasson",        u: "thomas.teacher@lexiconlms.se", p: "teacher");
-#if true
-            _AddT(ctx, uMan, f: "Klas",     e: "Bengtsson",        u: "kb@gmail.com",                 p: "hemLigt123");
-            _AddT(ctx, uMan, f: "Per",      e: "Sundman",          u: "per@gmail.com",                p: "hemLigt123");
-            _AddT(ctx, uMan, f: "John",     e: "Cleese",           u: "jp@hotmail.com",               p: "hemLigt123");
-            _AddT(ctx, uMan, f: "Fröken",   e: "Uhr",                                                                  ph: "+46890510");
-
-            _AddS(ctx, uMan, f: "Eilert",   e: "Lingonsson", k: 3, u: "eillin@gmail.com",             p: "Abc-123");
-            _AddS(ctx, uMan, f: "Evert",    e: "Matsson",    k: 3, u: "evert@gmail.com");
-            _AddS(ctx, uMan, f: "Erik",     e: "Nilsson",    k: 3, u: "erikn@gmail.com");
-            _AddS(ctx, uMan, f: "Erland",   e: "Gustavssom", k: 3, u: "eg@eg.eu",                                      ph: "+4631313131");
-            _AddS(ctx, uMan, f: "Gunnar",   e: "Hansson",    k: 3, u: "gh@gh.kz");
-#endif
-
-            var fList = new List<string>();
-            var eList = new List<string>();
-
-            fList.Add("Adam");
-            fList.Add("Bertil");
-            fList.Add("Cesar");
-            fList.Add("David");
-            fList.Add("Erik");
-            fList.Add("Filip");
-            fList.Add("Gustav");
-            fList.Add("Helge");
-
-            eList.Add("Karlsson");
-            eList.Add("Larsson");
-            eList.Add("Pettersson");
-            eList.Add("Andersson");
-            eList.Add("Ohlsson");
-            eList.Add("Stridh");
-            eList.Add("Jansson");
-            eList.Add("Johansson");
-
-#if true
-            foreach (string f in fList) {
-                foreach (string e in eList) {
-                    _AddS(ctx, uMan, f: f, e: e);
-                }
-            }
-#endif
+            UserSeedSub(ctx, uMan);
 
             context.Modules.AddOrUpdate(
                  c => c.Name,
