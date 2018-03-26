@@ -4,35 +4,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LexiconLMS.Models;
 
 namespace LexiconLMS.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // CM_200_G100
         public ActionResult Index()
         {
-            if (!(User.Identity.IsAuthenticated)) {
+            if (!(User.Identity.IsAuthenticated))
+            {
                 // Not logged in.
                 return RedirectToAction("Login", "Account");
             }
+
             //
             // We have only one explicit role, "teacher", for
             // logged in users. If you are a legitimate user
             // of the application and are not a teacher, then
             // you are a student, with current design.
             //
-            if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) {
+            if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+            {
                 // Teacher
                 return RedirectToAction("Index", "Course");
-            } else {
+            }
+            else
+            {
                 // Student
-                return RedirectToAction("StudentStartPage", "Course");
+                return RedirectToAction("Index", "Student");
             }
         }
 
+        public ActionResult Seed()
+        {
+            if (!(User.Identity.IsAuthenticated))
+            {
+                // Not logged in.
+                return RedirectToAction("Login", "Account");
+            }
+
+            LexiconLMS.Migrations.MySeed.Seed2();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+#if false
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+#endif
     }
 }
