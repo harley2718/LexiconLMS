@@ -25,8 +25,15 @@ namespace LexiconLMS.Controllers
         public ActionResult Index(int? id)
         {
             int courseId = (id != null) ? id.Value : 0;
+
             bool teacherListFlag = (courseId == 0);
 
+            if (!User.IsInRole(Role.Teacher))
+            {
+                var currentUserId = User.Identity.GetUserId();
+                var user = db.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
+                courseId = user.CourseId.Value;
+            }
             var users =
                 db.Users
                 .Where(omega => (((omega.CourseId != null) ? omega.CourseId.Value : 0) == courseId))
@@ -107,7 +114,6 @@ namespace LexiconLMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                // var userStore = new UserStore<ApplicationUser>(context);
                 var userStore = new UserStore<ApplicationUser>(db);
                 var userManager = new UserManager<ApplicationUser>(userStore);
 

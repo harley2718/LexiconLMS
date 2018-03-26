@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LexiconLMS.Models;
 
 namespace LexiconLMS.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // CM_200_G100
         public ActionResult Index()
         {
@@ -16,7 +19,6 @@ namespace LexiconLMS.Controllers
                 // Not logged in.
                 return RedirectToAction("Login", "Account");
             }
-
             //
             // We have only one explicit role, "teacher", for
             // logged in users. If you are a legitimate user
@@ -28,24 +30,9 @@ namespace LexiconLMS.Controllers
                 return RedirectToAction("Index", "Course");
             } else {
                 // Student
-                return RedirectToAction("Index", "Student");
+                return RedirectToAction("StudentStartPage", "Course");
             }
         }
 
-#if false
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-#endif
     }
 }

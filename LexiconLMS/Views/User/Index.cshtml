@@ -5,15 +5,17 @@
 }
 
 <h2>
+    @Model.CourseName
+    @*@if (Model.TeacherListFlag)*@
+        @*@if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+        {
+            <span>Lärare</span>
+        }
+        else
+        {
+            <span>Elever</span>
+        }*@
     Användare
-    @if (Model.TeacherListFlag)
-    {
-        <span>= Larare</span>
-    }
-    else
-    {
-        <span>= Elever</span>
-    }
 </h2>
 
 <div class="bs">
@@ -44,7 +46,7 @@
         </span>
     }
 </p>
-<p>
+@*<p>
     @if (! Model.TeacherListFlag)
     {
     <span>
@@ -55,7 +57,7 @@
         @Html.DisplayFor(model => model.CourseId)
     </span>
     }
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
