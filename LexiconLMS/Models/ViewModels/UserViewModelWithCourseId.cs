@@ -11,11 +11,6 @@ namespace LexiconLMS.Models.ViewModels
         public int                        CourseId             { get; set; }
         public string                     CourseName           { get; set; }
         public bool                       TeacherListFlag      { get; set; }
-        public bool                       TeacherRoleFlag      { get; set; }
-#if false
-        public bool                       StudentListFlag      { get; set; }
-        public bool                       StudentRoleFlag      { get; set; }
-#endif
         public UserViewModel              DisplayNameContainer { get; set; }
     }
 }

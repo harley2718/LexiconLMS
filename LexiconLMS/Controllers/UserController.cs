@@ -20,7 +20,7 @@ namespace LexiconLMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: User
-        // CM_240_G100
+        // Namn för referens i eventuell dokumentation: CM_240_G100
         [Authorize]
         public ActionResult Index(int? id)
         {
@@ -74,7 +74,7 @@ namespace LexiconLMS.Controllers
             return View(model);
         }
 
-        // CM_240_G110
+        // Namn för referens i eventuell dokumentation: CM_240_G110
         [Authorize]
         public ActionResult Create(int? id)
         {
@@ -109,7 +109,7 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // CM_240_P112
+        // Namn för referens i eventuell dokumentation: CM_240_P112
         public ActionResult Create([Bind(Include = "IsTeacher,IsStudent,CourseId,UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel user)
         {
             if (ModelState.IsValid)
@@ -144,7 +144,7 @@ namespace LexiconLMS.Controllers
         }
 
         // GET: User/Edit/5
-        // CM_240_G120
+        // Namn för referens i eventuell dokumentation: CM_240_G120
         public ActionResult Edit(string id)
         {
             // TODO: Possibly, simplify code using Db.Users.Find(id), to avoid Linq.
@@ -185,7 +185,7 @@ namespace LexiconLMS.Controllers
         [ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
         //public ActionResult Edit([Bind(Include = "UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel model)
-        // CM_240_P121
+        // Namn för referens i eventuell dokumentation: CM_240_P121
         public ActionResult Edit([Bind(Include = "Id,UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel model)
         {
             if (ModelState.IsValid)
@@ -276,6 +276,17 @@ namespace LexiconLMS.Controllers
 
             if (ModelState.IsValid)
             {
+                //
+                // TODO: Check if the explicit removal of logins is needed or not.
+                //       It is possible that it is done automatically, by the
+                //       userManager.Delete method.
+                //       The code to remove users was found on internet and we
+                //       have already removed some unnessesary code to remove roles.
+                //       The code found used userManager.DeleteAsync method, but
+                //       we removed some "await" and "Async" strings from code and
+                //       identifiers to have it compile.
+                //
+
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -291,20 +302,6 @@ namespace LexiconLMS.Controllers
                     {
                         userManager.RemoveLogin(login.UserId, new UserLoginInfo(login.LoginProvider, login.ProviderKey));
                     }
-
-#if false
-                    //
-                    // There is already cascade delete for the rules.
-                    //
-                    if (rolesForUser.Count > 0)         // This line had compilation error.
-                    {
-                        foreach (var item in rolesForUser.ToList())
-                        {
-                            // item should be the name of the role
-                            var result = userManager.RemoveFromRole(user.Id, item);
-                        }
-                    }
-#endif
 
                     userManager.Delete(user);
                     transaction.Commit();
