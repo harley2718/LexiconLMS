@@ -32,7 +32,7 @@ namespace LexiconLMS.Controllers
             else
             {
                 // Student
-                return RedirectToAction("Index", "Student");
+                return RedirectToAction("StudentStartPage", "Course");
             }
         }
 

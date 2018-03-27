@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LexiconLMS.Models
 {
-    public class Module // : IValidatableObject
+    public class Module  : IValidatableObject
     {
         public int Id { get; set; }
         public int ActivityId { get; set; } 
@@ -38,17 +38,15 @@ namespace LexiconLMS.Models
         public virtual Course Course { get; set; }
 
 
-
-
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if (EndDate < StartDate)
-        //    {
-        //        yield return
-        //        new ValidationResult(errorMessage: "Startdatum måste komma före slutdatum.",
-        //                               memberNames: new[] { "EndDate" });
-        //    }
-        //}
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (EndDate < StartDate)
+            {
+                yield return
+                new ValidationResult(errorMessage: "Startdatum måste komma före slutdatum.",
+                                       memberNames: new[] { "EndDate" });
+            }
+        }
     }
     
 

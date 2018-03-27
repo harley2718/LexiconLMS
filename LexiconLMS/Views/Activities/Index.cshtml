@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<LexiconLMS.Models.Activity>
-
+@section Style{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+}
 @{
     ViewBag.Title = "Aktiviteter";
 }
-
-<h2>Aktiviteter</h2>
 
 <div class="bs">
     <ul class="breadcrumb">
@@ -23,43 +23,47 @@
     </ul>
 </div>
 
-<p>
-    @if (ViewBag.moduleId > 0)
-    {
-        @Html.ActionLink("Skapa ny aktivitet", "Create", new { moduleId = ViewBag.moduleId })        
-    }
-</p>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
+    <div class="row">
+        <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">Aktiviteter</div>
+        <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:0px">
+            @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+            {
+                @Html.ActionLink("Skapa ny aktivitet", "Create", new { moduleId = ViewBag.moduleId })}
+        </div>
+    </div>
+</div>
+<table class="table table-striped " id="activities">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
                 @if (item.Id == ViewBag.activitiesId)
-                    {<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
+        {<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -74,17 +78,54 @@
                 @Html.DisplayFor(modelItem => item.EndTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.ActionLink("Detaljer", "Details", new { id = item.Id })
             </td>
             <td>
-                @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Radera", "Delete", new { id = item.Id })
+                @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) { 
+                @Html.ActionLink("Redigera", "Edit", new { id = item.Id })}
+            </td>
+            <td>
+                @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) { 
+                @Html.ActionLink("Radera", "Delete", new { id = item.Id })}
             </td>
         </tr>
-    }
-
+}
+    </tbody>
 </table>
 <div>
     @*@Html.ActionLink("Tillbaka till moduler", "Index", "Module", new { moduleId = ViewBag.moduleId, courseId = ViewBag.courseId },null)*@
 </div>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#activities').DataTable(
+                {
+                    "paging": true,
+                    "columnDefs": [{ "orderable": false, "targets": 5 },
+                        { "orderable": false, "targets": 6 },
+                        { "orderable": false, "targets": 7 }],
+                    "language": {
+                        "search": "Sök",
+                        "zeroRecords": "Hittade inga matchande resultat",
+                        "info": "Visar _START_ till _END_ av totalt _TOTAL_ rader",
+                        "infoEmpty": "Visar 0 till 0 av totalt 0 rader",
+                        "infoFiltered": "(filtrerade från totalt _MAX_ rader)",
+                        "lengthMenu": "Visa _MENU_ rader",
+                        "paginate": {
+                            "first": "Första",
+                            "last": "Sista",
+                            "next": "Nästa",
+                            "previous": "Föregående"
+                        },
+                    }
+                });
+        });
+    </script>
+    <script>
+        $('#editor').wysiwyg();
+    </script>
+}
