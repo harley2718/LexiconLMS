@@ -63,13 +63,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Radera" class="btn btn-default" /> |
+            <input type="submit" value="Radera" class="btn btn-default" /> 
         </div>
         <div>
             @Html.ActionLink("Tillbaka till kursens moduler", "Index", "Module", new { courseId = Model.CourseId, moduleId = Model.Id }, null)
         </div>
         <div>
-            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course")
+            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course", new { id = Model.CourseId}, null)
         </div>
     }
 </div>

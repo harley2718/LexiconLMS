@@ -78,7 +78,8 @@ namespace LexiconLMS.Controllers
             {
                 db.Activity.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
+                //return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
+                return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId });
             }
 
             return View(activity);
@@ -112,6 +113,7 @@ namespace LexiconLMS.Controllers
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
+
             }
             return View(activity);
         }
@@ -139,7 +141,7 @@ namespace LexiconLMS.Controllers
             Activity activity = db.Activity.Find(id);
             db.Activity.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
         }
 
         protected override void Dispose(bool disposing)

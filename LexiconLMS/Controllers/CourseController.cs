@@ -99,7 +99,7 @@ namespace LexiconLMS.Controllers
             {
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Course", new { id = course.Id });
             }
             return View(course);
         }

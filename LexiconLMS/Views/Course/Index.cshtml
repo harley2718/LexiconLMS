@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     }
 
-    <div class="bs">
+    @*<div class="bs">
         <ul class="breadcrumb">
             <li>
                 <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
@@ -15,12 +15,12 @@
                 <div class="node-title">Listvy kurser</div>
             </li>
         </ul>
-    </div>
+    </div>*@
 
     <div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
         <div class="row">
             <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">Kurser</div>
-            <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:0px">
+            <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:17px">
                 @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) {
                 @Html.ActionLink("Skapa kurs", "Create", null, new { @class = "btn btn-primary pull-right" })}
             </div>
@@ -46,7 +46,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-
                     <td style="vertical-align: middle">
                         @Html.DisplayFor(modelItem => item.Name)
                         @if (item.Id ==  ViewBag.CurrentCourse){<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}

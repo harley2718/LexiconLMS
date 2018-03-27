@@ -6,7 +6,7 @@
     ViewBag.Title = "Moduler";
 }
 
-<div class="bs">
+@*<div class="bs">
     <ul class="breadcrumb">
         <li>
             <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
@@ -18,12 +18,12 @@
             <div class="node-title">Listvy moduler</div>
         </li>
     </ul>
-</div>
+</div>*@
 
 <div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
     <div class="row">
         <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">Moduler</div>
-        <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:0px">
+        <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:17px">
             @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) {
                  @Html.ActionLink("Skapa modul", "Create", new { courseId = ViewBag.courseId }, new { @class = "btn btn-primary pull-right" })}
         </div>

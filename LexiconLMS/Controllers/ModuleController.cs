@@ -18,7 +18,6 @@ namespace LexiconLMS.Controllers
         // GET: Modules
         public ActionResult Index(int? courseId, int? moduleId)
         {
-            ViewBag.courseId = courseId;
             if (moduleId.HasValue)
             {
                 ViewBag.moduleId = moduleId.Value;
@@ -33,8 +32,8 @@ namespace LexiconLMS.Controllers
 
             if (courseId.HasValue) 
             {
-                List<Module> modules =
-                db.Modules.Where(m => m.CourseId == courseId).ToList();
+                ViewBag.courseId = courseId.Value;
+                List<Module> modules = db.Modules.Where(m => m.CourseId == courseId).ToList();
               
                 return View(modules);
             }
