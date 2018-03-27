@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<LexiconLMS.Models.Module>
-
+@section Style{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+}
 @{
     ViewBag.Title = "Moduler";
 }
-
-<h2>Moduler</h2>
 
 <div class="bs">
     <ul class="breadcrumb">
@@ -20,69 +20,111 @@
     </ul>
 </div>
 
+<div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
+    <div class="row">
+        <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">Moduler</div>
+        <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:0px">
+            @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) {
+                 @Html.ActionLink("Skapa modul", "Create", new { courseId = ViewBag.courseId }, new { @class = "btn btn-primary pull-right" })}
+        </div>
+    </div>
+</div>
 
-@if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
-{
-<p>
-    @Html.ActionLink("Skapa modul", "Create", new { courseId = ViewBag.courseId })
-</p>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-            @if (item.Id == ViewBag.moduleId){<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-
-        @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+<table class="table table-striped " id="modules">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-        <td>
-            @Html.ActionLink("Detaljer", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Redigera", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Radera", "Delete", new { id = item.Id })          
-        </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    @if (item.Id == ViewBag.moduleId)
+                    {<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Detaljer", "Details", new { id = item.Id })
+                </td>
+                <td>
+                    @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)){
+                        @Html.ActionLink("Redigera", "Edit", new { id = item.Id })}
+                </td>
+                <td>
+                    @if (User.IsInRole(LexiconLMS.Models.Role.Teacher)) {                      
+                        @Html.ActionLink("Radera", "Delete", new { id = item.Id })}
+                </td>
+                <td align="right" width="200px">
+                    @Html.ActionLink("Aktiviteter", "Index", "Activities", new { moduleId = item.Id }, new { @class = "btn btn-default" })
+                </td>
+            </tr>
         }
-        <td align="right" width="200px">
-            @Html.ActionLink("Aktiviteter", "Index", "Activities", new { moduleId = item.Id }, new { @class = "btn btn-default" })
-        </td>
-    </tr>
-    }
 </table>
 <div>
-    @if (Model.Count() > 0)
+    @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
     {
-        @Html.ActionLink("Tillbaka till kurslista", "Index", "Course", new { id = @Model.FirstOrDefault().CourseId }, null)
-    }
-    else
-    {
-        @Html.ActionLink("Tillbaka till kurslista", "Index", "Course") 
+        if (Model.Count() > 0)
+        {
+            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course", new { id = @Model.FirstOrDefault().CourseId }, null)
+        }
+        else
+        {
+            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course")
+        }
     }
 </div>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#modules').DataTable(
+                {
+                    "paging": true,
+                    "columnDefs": [{ "orderable": false, "targets": 3 },
+                        { "orderable": false, "targets": 4 },
+                        { "orderable": false, "targets": 5 },
+                        { "orderable": false, "targets": 6 }],
+                    "language": {
+                        "search": "Sök",
+                        "zeroRecords": "Hittade inga matchande resultat",
+                        "info": "Visar _START_ till _END_ av totalt _TOTAL_ rader",
+                        "infoEmpty": "Visar 0 till 0 av totalt 0 rader",
+                        "infoFiltered": "(filtrerade från totalt _MAX_ rader)",
+                        "lengthMenu": "Visa _MENU_ rader",
+                        "paginate": {
+                            "first": "Första",
+                            "last": "Sista",
+                            "next": "Nästa",
+                            "previous": "Föregående"
+                        },
+                    }
+                });
+        });
+    </script>
+    <script>
+        $('#editor').wysiwyg();
+    </script>
+}

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LexiconLMS.Models
 {
-    public class Activity
+    public class Activity : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -54,5 +54,18 @@ namespace LexiconLMS.Models
         public virtual Module Module { get; set; }
         public virtual Course Course { get; set; }
 
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (EndTime < StartTime)
+            {
+                yield return
+                new ValidationResult(errorMessage: "Aktivitetens start måste ligga före dess sluttid.",
+                                       memberNames: new[] { "EndTime" });
+            }
+        }
+
     }
+
+
 }

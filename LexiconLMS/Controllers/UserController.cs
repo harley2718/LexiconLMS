@@ -68,7 +68,7 @@ namespace LexiconLMS.Controllers
             }
             else
             {
-                model.CourseName = "Missing course name !!!";
+                model.CourseName = "";
             }
 
             return View(model);

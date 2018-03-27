@@ -60,12 +60,15 @@
 </div>
 <p>
     <div>
-        @Html.ActionLink("Redigera", "Edit", new { id = Model.Id })
-    </div>
-    <div>
         @Html.ActionLink("Tillbaka till kursens moduler", "Index", "Module", new { courseId = Model.CourseId, moduleId = Model.Id }, null)
     </div>
-    <div>
-        @Html.ActionLink("Tillbaka till kurslista", "Index", "Course")
-    </div>
+    @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+    {
+        <div>
+            @Html.ActionLink("Redigera", "Edit", new { id = Model.Id })
+        </div>
+        <div>
+            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course")
+        </div>
+    }
 </p>

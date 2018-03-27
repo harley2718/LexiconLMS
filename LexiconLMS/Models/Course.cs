@@ -24,7 +24,7 @@ namespace LexiconLMS.Models
         public DateTime StartDate { get; set; }
 
         [AllowHtml]
-        [Display(Name = "Beskrivning")]
+        [Display(Name = "Kursinfo")]
         public string Content { get; set; }
 
         public int ModulesId { get; set; }

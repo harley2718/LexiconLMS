@@ -29,7 +29,7 @@ namespace LexiconLMS.Controllers
 
             var list =
             db.Courses.ToList()
-            .OrderByDescending(cl => cl.StartDate.ToString())
+            .OrderBy(cl => cl.Name.ToString())
             .Select( cl => new Course { Name = cl.Name, StartDate = cl.StartDate}
             );
             return View(db.Courses.ToList());

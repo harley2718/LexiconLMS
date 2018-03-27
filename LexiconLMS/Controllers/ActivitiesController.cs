@@ -17,7 +17,6 @@ namespace LexiconLMS.Controllers
         // GET: Activities
         public ActionResult Index(int? courseId,int? moduleId, int? activitiesId)
         {
-            //ViewBag.moduleId = moduleId;
             if (activitiesId.HasValue)
             {
                 ViewBag.activitiesId = activitiesId;
@@ -79,7 +78,7 @@ namespace LexiconLMS.Controllers
             {
                 db.Activity.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Activity", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
+                return RedirectToAction("Index", "Activities", new { moduleId = activity.ModuleId, activitiesId = activity.Id });
             }
 
             return View(activity);
