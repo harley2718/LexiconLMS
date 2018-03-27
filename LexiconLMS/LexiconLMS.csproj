@@ -208,7 +208,6 @@
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Validation\DateValidation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Module.cs" />

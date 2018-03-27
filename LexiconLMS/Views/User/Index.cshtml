@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 }
 
-<div class="bs">
+@*<div class="bs">
     <ul class="breadcrumb">
         <li>
             <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
@@ -16,67 +16,30 @@
             <div class="node-title">Listvy</div>
         </li>
     </ul>
-</div>
-
+</div>*@
 
 @{
     ViewBag.Title = "Användare";
 }
 
-<h2>
-    @*@if (Model.TeacherListFlag)*@
-    @*@if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
-        {
-            <span>Lärare</span>
-        }
-        else
-        {
-            <span>Elever</span>
-        }*@
-</h2>
-
-@*<p>
-        @if (Model.TeacherListFlag)
-        {
-            <span>
-                @Html.ActionLink("Lägg till lärare", "Create", "User", new { id = Model.CourseId }, null)
-            </span>
-        }
-        else
-        {
-            <span>
-                @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, null)
-            </span>
-        }
-    </p>*@
-
 <div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
     <div class="row">
-        <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">Användare</div>
-        <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:0px">
-            @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
-            {
-                if (Model.TeacherListFlag)
-                    {@Html.ActionLink("Lägg till lärare", "Create", "User", new { id = Model.CourseId }, new { @class = "btn btn-primary pull-right" })}
-                else
-                    {@Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, new { @class = "btn btn-primary pull-right" })}
-    }
+        <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">
+            @if (Model.TeacherListFlag || User.IsInRole(LexiconLMS.Models.Role.Teacher)){
+                <span>Lärare</span>
+            }else{
+                <span>Elever</span>}
+        </div>
+        <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:17px">
+               @if (Model.TeacherListFlag || User.IsInRole(LexiconLMS.Models.Role.Teacher)){ 
+                    @Html.ActionLink("Lägg till lärare", "Create", "User", new { id = Model.CourseId }, new { @class = "btn btn-primary pull-right" })
+                }else{
+                    @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, new { @class = "btn btn-primary pull-right" })
+                }
         </div>
     </div>
 </div>
 
-@*<p>
-        @if (! Model.TeacherListFlag)
-        {
-        <span>
-            Kursnamn:
-            @Model.CourseName
-            <br>
-            Kurs-id:
-            @Html.DisplayFor(model => model.CourseId)
-        </span>
-        }
-    </p>*@
 <table class="table table-striped " id="users">
     <thead>
         <tr>
@@ -95,9 +58,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DisplayNameContainer.UserPhoneNumber)
             </th>
-            @*@if (false && (!Model.TeacherListFlag)){
-                <th>@Html.DisplayNameFor(model => model.DisplayNameContainer.CourseId)</th>
-                }*@
             <th></th>
             <th></th>
         </tr>
@@ -121,11 +81,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.UserPhoneNumber)
                 </td>
-                @*@if (false && (!Model.TeacherListFlag)){
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CourseId)
-                    </td>
-                     }*@
                 <td>
                     @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
                     {
@@ -141,10 +96,7 @@
 
     </tbody>
 </table>
-@if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
-{
-    <div>@Html.ActionLink("Tillbaka till kurser", "Index", "Course", new { id = Model.CourseId }, null)</div>
-}
+
     @section Scripts {
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>

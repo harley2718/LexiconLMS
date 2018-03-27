@@ -4,91 +4,78 @@
     ViewBag.Title = "Radera";
 }
 
-<h2>Radera användare</h2>
+<h2>Radera användare: @Model.User.UserName </h2>
 
-<div class="bs">
-    <ul class="breadcrumb">
-        <li>
-            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
-        </li>
-        <li>
-            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
-        </li>
-        <li class="current">
-            <div class="node-title">Ta bort</div>
-        </li>
-    </ul>
-</div>
+    @*<div class="bs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+            </li>
+            <li>
+                <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+            </li>
+            <li class="current">
+                <div class="node-title">Ta bort</div>
+            </li>
+        </ul>
+    </div>*@
 
-<h3>Är du säker på att du vill radera denna användare?</h3>
-<div>
-    @if (Model.User.CourseId != 0) { <h2>Kursnamn: @Model.CourseName</h2>}
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserFName)
-        </dt>
+    <h3>Är du säker på att du vill radera denna användare?</h3>
+    <div>
+        @if (Model.User.CourseId != 0)
+        {<h2>Kursnamn: @Model.CourseName</h2>}
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserFName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.UserFName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.User.UserFName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserLName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserLName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.UserLName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.User.UserLName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.User.UserName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserEmail)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserEmail)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.UserEmail)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.User.UserEmail)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserPhoneNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserPhoneNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.UserPhoneNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.User.UserPhoneNumber)
+            </dd>
 
-        @*@if (Model.User.CourseId != 0)
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.CourseName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.CourseName)
-                </dd>
-            }
-            else
-            {
-                <dt>Detta är en lärare.</dt>
-                <dd></dd>
-            }*@
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Radera" class="btn btn-default" /> 
-        </div>
-        <br/>
-        <div>@Html.ActionLink("Tillbaka till elever", "Index", new { id = Model.User.CourseId })</div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Radera" class="btn btn-default" />
+            </div>
+            <br />
+            <div>@Html.ActionLink("Tillbaka till lista", "Index", new { id = Model.User.CourseId })</div>
+        }
+    </div>
