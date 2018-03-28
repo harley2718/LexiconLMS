@@ -21,6 +21,11 @@ namespace LexiconLMS.Controllers
             if (moduleId.HasValue)
             {
                 ViewBag.moduleId = moduleId.Value;
+                List<Module> modules = db.Modules.Where(m => m.Id == moduleId).ToList();
+                if (modules.Count > 0)
+                {
+                    ViewBag.courseName = modules.FirstOrDefault().Course.Name;
+                }
             }
             
             if (!User.IsInRole(Role.Teacher))
@@ -34,7 +39,10 @@ namespace LexiconLMS.Controllers
             {
                 ViewBag.courseId = courseId.Value;
                 List<Module> modules = db.Modules.Where(m => m.CourseId == courseId).ToList();
-              
+                if (modules.Count > 0)
+                {
+                    ViewBag.courseName = modules.FirstOrDefault().Course.Name;
+                }
                 return View(modules);
             }
             
@@ -59,6 +67,7 @@ namespace LexiconLMS.Controllers
         // GET: Modules/Create
         public ActionResult Create(int? courseId)
         {
+            ViewBag.courseName = db.Courses.Where(m => m.Id == courseId).FirstOrDefault().Name;
             ViewBag.courseId = courseId.Value;
             return View();
         }
@@ -108,7 +117,8 @@ namespace LexiconLMS.Controllers
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Course", new { id = module.Id });
+                //return RedirectToAction("Index", "Course", new { id = module.Id });
+                return RedirectToAction("Index", "Module", new { courseId = module.CourseId, moduleId = module.Id });
             }
             return View(module);
         }

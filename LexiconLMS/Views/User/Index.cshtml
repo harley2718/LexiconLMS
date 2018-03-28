@@ -5,37 +5,43 @@
 }
 
 @*<div class="bs">
-    <ul class="breadcrumb">
-        <li>
-            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
-        </li>
-        <li>
-            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
-        </li>
-        <li class="current">
-            <div class="node-title">Listvy</div>
-        </li>
-    </ul>
-</div>*@
+        <ul class="breadcrumb">
+            <li>
+                <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+            </li>
+            <li>
+                <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+            </li>
+            <li class="current">
+                <div class="node-title">Listvy</div>
+            </li>
+        </ul>
+    </div>*@
 
 @{
     ViewBag.Title = "Användare";
 }
+    <h5>@Model.CourseName</h5>
 
 <div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
     <div class="row">
         <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">
-            @if (Model.TeacherListFlag || User.IsInRole(LexiconLMS.Models.Role.Teacher)){
-                <span>Lärare</span>
-            }else{
-                <span>Elever</span>}
+            @if (Model.CourseId != 0)
+                {<div>Elever</div>
+                } else {<div>Lärare</div>}
         </div>
         <div class="col-md-6" style="padding-bottom:5px;padding-top:5px;padding-right:17px">
-               @if (Model.TeacherListFlag || User.IsInRole(LexiconLMS.Models.Role.Teacher)){ 
+            @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
+            {
+                if (Model.TeacherListFlag)
+                {
                     @Html.ActionLink("Lägg till lärare", "Create", "User", new { id = Model.CourseId }, new { @class = "btn btn-primary pull-right" })
-                }else{
+                }
+                else
+                {
                     @Html.ActionLink("Lägg till elev", "Create", "User", new { id = Model.CourseId }, new { @class = "btn btn-primary pull-right" })
                 }
+            }
         </div>
     </div>
 </div>
@@ -93,38 +99,37 @@
                 </td>
             </tr>
         }
-
     </tbody>
 </table>
 
-    @section Scripts {
-        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#users').DataTable(
-                    {
-                        "paging": true,
-                        "columnDefs": [{ "orderable": false, "targets": 5 },
-                        { "orderable": false, "targets": 6 }],
-                        "language": {
-                            "search": "Sök",
-                            "zeroRecords": "Hittade inga matchande resultat",
-                            "info": "Visar _START_ till _END_ av totalt _TOTAL_ rader",
-                            "infoEmpty": "Visar 0 till 0 av totalt 0 rader",
-                            "infoFiltered": "(filtrerade från totalt _MAX_ rader)",
-                            "lengthMenu": "Visa _MENU_ rader",
-                            "paginate": {
-                                "first": "Första",
-                                "last": "Sista",
-                                "next": "Nästa",
-                                "previous": "Föregående"
-                            },
-                        }
-                    });
-            });
-        </script>
-        <script>
-            $('#editor').wysiwyg();
-        </script>
-    }
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#users').DataTable(
+                {
+                    "paging": true,
+                    "columnDefs": [{ "orderable": false, "targets": 5 },
+                    { "orderable": false, "targets": 6 }],
+                    "language": {
+                        "search": "Sök",
+                        "zeroRecords": "Hittade inga matchande resultat",
+                        "info": "Visar _START_ till _END_ av totalt _TOTAL_ rader",
+                        "infoEmpty": "Visar 0 till 0 av totalt 0 rader",
+                        "infoFiltered": "(filtrerade från totalt _MAX_ rader)",
+                        "lengthMenu": "Visa _MENU_ rader",
+                        "paginate": {
+                            "first": "Första",
+                            "last": "Sista",
+                            "next": "Nästa",
+                            "previous": "Föregående"
+                        },
+                    }
+                });
+        });
+    </script>
+    <script>
+        $('#editor').wysiwyg();
+    </script>
+}

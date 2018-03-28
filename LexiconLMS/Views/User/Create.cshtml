@@ -2,21 +2,29 @@
 @{
     ViewBag.Title = "Skapa användare";
 }
-<h2>Skapa användare</h2>
 
-<div class="bs">
-    <ul class="breadcrumb">
-        <li>
-            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
-        </li>
-        <li>
-            <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
-        </li>
-        <li class="current">
-            <div class="node-title">Skapa</div>
-        </li>
-    </ul>
-</div>
+
+
+@*<div class="bs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+            </li>
+            <li>
+                <a href="http://localhost:51210/User"><div class="node-title">Användare</div></a>
+            </li>
+            <li class="current">
+                <div class="node-title">Skapa</div>
+            </li>
+        </ul>
+    </div>*@
+
+<h5>@Model.CourseName</h5>
+@if (Model.CourseId != 0)
+{
+    <h2>Lägg till elev</h2>}
+else
+{<h2>Lägg till lärare</h2>}
 
 @using (Html.BeginForm())
 {
@@ -76,9 +84,9 @@
         </div>
     </div>
 }
-    
-    <div>@Html.ActionLink("Tillbaka till elever", "Index", new { id = Model.CourseId })</div>
-    <div>@Html.ActionLink("Tillbaka till kurser", "Index", "Course")</div>
+
+<div>@Html.ActionLink("Tillbaka till lista", "Index", new { id = Model.CourseId })</div>
+<div>@Html.ActionLink("Tillbaka till kurser", "Index", "Course")</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

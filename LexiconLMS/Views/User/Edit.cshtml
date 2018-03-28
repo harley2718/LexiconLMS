@@ -4,7 +4,6 @@
     ViewBag.Title = "Redigera";
 }
 
-<h2>Redigera användare: @Model.UserName </h2>
 
 @*<div class="bs">
         <ul class="breadcrumb">
@@ -19,6 +18,14 @@
             </li>
         </ul>
     </div>*@
+<h5>@Model.CourseName</h5>
+
+@if (Model.CourseId != 0)
+{<h2>Redigera elev: @Model.UserName</h2>
+}
+else
+{<h2>Redigera lärare: @Model.UserName</h2>}
+
 
 
 @using (Html.BeginForm())
@@ -78,7 +85,7 @@
         </div>
     </div>
 }
-        
+
 <div>@Html.ActionLink("Tillbaka till lista", "Index", new { id = Model.CourseId })</div>
 
 @section Scripts {

@@ -97,8 +97,10 @@ namespace LexiconLMS.Controllers
             {
                 // Prepare creation of Student record.
                 model.CourseId = courseId;
+                model.CourseName = db.Courses.FirstOrDefault(c => c.Id == courseId).Name;
+
                 // TODO get a correct Course Name from database.
-                model.CourseName = "kursId_" + model.CourseId.ToString();  // Quick and dirty replacement for real CourseName.
+                //model.CourseName = "kursId_" + model.CourseId.ToString();  // Quick and dirty replacement for real CourseName.
             }
 
             return View(model);
@@ -135,8 +137,6 @@ namespace LexiconLMS.Controllers
                 {
                     throw new Exception(string.Join("\n", result.Errors));
                 }
-
-                // return RedirectToAction("Index", "Course", new { id = user.CourseId });
                 return RedirectToAction("Index", "User", new { id = user.CourseId });
             }
 
@@ -183,8 +183,6 @@ namespace LexiconLMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,Name,StartDate,EndDate")] Activity activity)
-        //public ActionResult Edit([Bind(Include = "UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel model)
         // Namn för referens i eventuell dokumentation: CM_240_P121
         public ActionResult Edit([Bind(Include = "Id,UserFName,UserLName,UserName,Password,UserEmail,UserPhoneNumber")] UserViewModel model)
         {
@@ -201,7 +199,7 @@ namespace LexiconLMS.Controllers
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "User", new { id = user.CourseId });
+                return RedirectToAction("Index", "User", new { id = user.CourseId});
             }
             return View(model);
         }
@@ -226,7 +224,6 @@ namespace LexiconLMS.Controllers
             };
 
             var course = db.Courses.FirstOrDefault(c => c.Id == user.CourseId);
-
             var model = new UserViewModelForDelete
             {
                 User = submodel,
@@ -256,7 +253,7 @@ namespace LexiconLMS.Controllers
             };
 
             var course = db.Courses.FirstOrDefault(c => c.Id == user.CourseId);
-
+ 
             var model = new UserViewModelForDelete
             {
                 User = submodel,

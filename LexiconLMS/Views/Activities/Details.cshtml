@@ -4,9 +4,10 @@
     ViewBag.Title = "Detaljvy aktivitet";
 }
 
-<h2>Detaljvy aktivitet</h2>
+<h5>@Model.Module.Course.Name / @Model.Module.Name</h5>
+<h2>Aktivitet: @Model.Name</h2>
 
-<div class="bs">
+@*<div class="bs">
     <ul class="breadcrumb">
         <li>
             <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
@@ -21,7 +22,7 @@
             <div class="node-title">Detaljvy aktiviteter</div>
         </li>
     </ul>
-</div>
+</div>*@
 
 <div>
     <h4></h4>
@@ -36,13 +37,13 @@
             @Html.DisplayFor(model => model.Type)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.Name)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.StartDate)

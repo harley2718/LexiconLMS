@@ -22,7 +22,7 @@
         </li>
     </ul>
 </div>*@
-
+<h5>@ViewBag.breadCrumb </h5>
 <div class="container-fluid" style="margin-bottom:20px;margin-top:30px">
     <div class="row">
         <div class="col-md-6 align-top" style="font-size:30px;padding-left:7px">Aktiviteter</div>
@@ -61,9 +61,9 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
                     @if (item.Id == ViewBag.activitiesId)
-                    {<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
+                            {<label class="text-danger">==>&nbsp;&nbsp;</label>}
+                    @Html.DisplayFor(modelItem => item.Type)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -95,12 +95,11 @@
     </tbody>
 </table>
 <div>
-    @*@Html.ActionLink("Tillbaka till moduler", "Index", "Module", new { moduleId = ViewBag.moduleId, courseId = ViewBag.courseId },null)*@
     <div>
         @if (User.IsInRole(LexiconLMS.Models.Role.Teacher))
         {
 
-                @Html.ActionLink("Tillbaka till moduler", "Index", "Module", new {courseId = ViewBag.courseId, moduleId = @Model.FirstOrDefault().ModuleId }, null)
+                @Html.ActionLink("Tillbaka till moduler", "Index", "Module", new {courseId = ViewBag.courseId, moduleId = ViewBag.moduleId }, null)
 
         }
     </div>

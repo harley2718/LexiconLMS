@@ -4,9 +4,7 @@
     ViewBag.Title = "Radera";
 }
 
-<h2>Radera användare: @Model.User.UserName </h2>
-
-    @*<div class="bs">
+@*<div class="bs">
         <ul class="breadcrumb">
             <li>
                 <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
@@ -20,62 +18,69 @@
         </ul>
     </div>*@
 
-    <h3>Är du säker på att du vill radera denna användare?</h3>
-    <div>
-        @if (Model.User.CourseId != 0)
-        {<h2>Kursnamn: @Model.CourseName</h2>}
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.User.UserFName)
-            </dt>
+@if (Model.User.CourseId != 0)
+{
+<h2>@Model.CourseName<br />Radera elev: @Model.User.UserName </h2>
+}
+else
+{
+ <h2>Radera lärare: @Model.User.UserName </h2>}
 
-            <dd>
-                @Html.DisplayFor(model => model.User.UserFName)
-            </dd>
+<h3>Är du säker på att du vill radera denna användare?</h3>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.User.UserLName)
-            </dt>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserFName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.User.UserLName)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserFName)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.User.UserName)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserLName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.User.UserName)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserLName)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.User.UserEmail)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.User.UserEmail)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.User.UserPhoneNumber)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserEmail)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.User.UserPhoneNumber)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserEmail)
+        </dd>
 
-        </dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserPhoneNumber)
+        </dt>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+        <dd>
+            @Html.DisplayFor(model => model.User.UserPhoneNumber)
+        </dd>
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Radera" class="btn btn-default" />
-            </div>
-            <br />
-            <div>@Html.ActionLink("Tillbaka till lista", "Index", new { id = Model.User.CourseId })</div>
-        }
-    </div>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Radera" class="btn btn-default" />
+        </div>
+        <br />
+        <div>@Html.ActionLink("Tillbaka till lista", "Index", new { id = Model.User.CourseId })</div>
+    }
+</div>

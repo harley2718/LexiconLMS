@@ -4,24 +4,25 @@
     ViewBag.Title = "Redigera aktivitet";
 }
 
-<h2>Redigera aktivitet</h2>
+@*<div class="bs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+            </li>
+            <li>
+                <a href="http://localhost:51210/Module"><div class="node-title">Modul</div></a>
+            </li>
+            <li>
+                <a href="http://localhost:51210/Activities"><div class="node-title">Aktiviteter</div></a>
+            </li>
+            <li class="current">
+                <div class="node-title">Redigera aktivitet</div>
+            </li>
+        </ul>
+    </div>*@
 
-<div class="bs">
-    <ul class="breadcrumb">
-        <li>
-            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
-        </li>
-        <li>
-            <a href="http://localhost:51210/Module"><div class="node-title">Modul</div></a>
-        </li>
-        <li>
-            <a href="http://localhost:51210/Activities"><div class="node-title">Aktiviteter</div></a>
-        </li>
-        <li class="current">
-            <div class="node-title">Redigera aktivitet</div>
-        </li>
-    </ul>
-</div>
+<h5>@Model.Module.Course.Name / @Model.Module.Name</h5>
+<h2>Redigera aktivitet: @Model.Name</h2>
 
 @using (Html.BeginForm())
 {

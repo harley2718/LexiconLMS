@@ -24,21 +24,33 @@ namespace LexiconLMS.Controllers
             if (courseId.HasValue)
             {
                 ViewBag.courseId = courseId;
+                List<Module> modules = db.Modules.Where(m => m.CourseId == courseId).ToList();
+                if (modules.Count > 0)
+                {
+                    ViewBag.breadCrumb = modules.FirstOrDefault().Course.Name + " / " + modules.FirstOrDefault().Name;
+                }
             }
             if (moduleId.HasValue)
             {
                 ViewBag.moduleId = moduleId;
+
+                List<Module> modules = db.Modules.Where(m => m.Id == moduleId).ToList();
+                if (modules.Count > 0) {
+                    ViewBag.breadCrumb = modules.FirstOrDefault().Course.Name + " / " + modules.FirstOrDefault().Name;
+                }
+
                 List<Activity> activities =
                 db.Activity.Where(a => a.ModuleId == moduleId).ToList();
 
                 return View(activities);
+
             }
             else
             {
                 ViewBag.moduleId = 0;
                 List<Activity> activities =
                 db.Activity.Where(a => a.ModuleId == 0).ToList();
-
+                
                 return View(activities);
             }
 

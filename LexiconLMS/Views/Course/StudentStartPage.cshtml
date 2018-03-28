@@ -3,37 +3,19 @@
 @{
     ViewBag.Title = "Kurssida";
 }
+<div style="height:20px"></div>
+<h1>Kurs: @Html.DisplayFor(model => model.Name)</h1>
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h5> @Html.DisplayNameFor(model => model.StartDate) : @Html.DisplayFor(model => model.StartDate)</h5>
+
+<div style="height:50px"></div>
 
 <div>
-    <h4></h4>
     <hr />
     <dl class="container-fluid">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            
-        </dt>
-
         <dd>
             @Html.Raw(Model.Content)
         </dd>
-
     </dl>
 </div>
 

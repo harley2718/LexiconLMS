@@ -47,8 +47,10 @@
             {
                 <tr>
                     <td style="vertical-align: middle">
+                        @if (item.Id == ViewBag.CurrentCourse)
+                            {<label class="text-danger">==>&nbsp;&nbsp;</label>}
                         @Html.DisplayFor(modelItem => item.Name)
-                        @if (item.Id ==  ViewBag.CurrentCourse){<label class="text-danger">&nbsp;&nbsp;ᗏᗏᗏ</label>}
+
                     </td>
                     <td style="vertical-align: middle;padding-left:30px">
                         @Html.DisplayFor(modelItem => item.StartDate)

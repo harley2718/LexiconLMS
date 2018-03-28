@@ -4,21 +4,23 @@
     ViewBag.Title = "Radera";
 }
 
-<h2>Radera</h2>
+@*<div class="bs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
+            </li>
+            <li>
+                <a href="http://localhost:51210/Module"><div class="node-title">Modul</div></a>
+            </li>
+            <li class="current">
+                <div class="node-title">Radera moduler</div>
+            </li>
+        </ul>
+    </div>*@
 
-<div class="bs">
-    <ul class="breadcrumb">
-        <li>
-            <a href="http://localhost:51210/Course"><div class="node-title">Kurser</div></a>
-        </li>
-        <li>
-            <a href="http://localhost:51210/Module"><div class="node-title">Modul</div></a>
-        </li>
-        <li class="current">
-            <div class="node-title">Radera moduler</div>
-        </li>
-    </ul>
-</div>
+
+<h5>@Model.Course.Name</h5>
+<h2>Radera modul: @Model.Name</h2>
 
 <h3>Är du säker på att du vill radera denna modul?</h3>
 <div>
@@ -63,13 +65,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Radera" class="btn btn-default" /> 
+            <input type="submit" value="Radera" class="btn btn-default" />
         </div>
         <div>
             @Html.ActionLink("Tillbaka till kursens moduler", "Index", "Module", new { courseId = Model.CourseId, moduleId = Model.Id }, null)
         </div>
         <div>
-            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course", new { id = Model.CourseId}, null)
+            @Html.ActionLink("Tillbaka till kurslista", "Index", "Course", new { id = Model.CourseId }, null)
         </div>
     }
 </div>
